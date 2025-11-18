@@ -18,19 +18,21 @@ export const count = [
     {
         icon: getImgPath("/images/counter/admin.svg"),
         value: "364",
-        description: "Client testimonials received in the year 2021",
+        description: "Client testimonials received in the year 2024",
     },
     {
         icon: getImgPath("/images/counter/bag.svg"),
-        value: "45M+",
+        value: "2M+",
         description: "Revenue generated through new projects & marketing",
     },
 ];
 
 export const Progress = [
-    { title: 'UX Research and Testing', Progress: 95 },
-    { title: 'Product Management', Progress: 84 },
-    { title: 'UI & Visual Design', Progress: 90 }
+  { title: "Web Development (React & Node.js)", Progress: 95 },
+  { title: "Data Scraping & Automation", Progress: 90 },
+  { title: "E-commerce Product Management", Progress: 88 },
+  { title: "Virtual Assistant Services", Progress: 92 },
+  { title: "Data Entry & Processing", Progress: 85 },
 ];
 
 export const Servicebox = [
