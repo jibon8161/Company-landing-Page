@@ -109,10 +109,14 @@ const ContactForm = () => {
                       onChange={handleChange}
                     >
                       <option value="">Choose a specialist</option>
-                      <option value="Baking & Pastry">Baking & Pastry</option>
-                      <option value="Exotic Cuisine">Exotic Cuisine</option>
-                      <option value="French Desserts">French Desserts</option>
-                      <option value="Seafood & Wine">Seafood & Wine</option>
+                      <option value="Website Developement">
+                        Website Developement
+                      </option>
+                      <option value="Virtual assistant">
+                        Virtual assistant
+                      </option>
+                      <option value="Product Listing">Product Listing</option>
+                      <option value="Data Entry">Data Entry</option>
                     </select>
                   </div>
                 </div>

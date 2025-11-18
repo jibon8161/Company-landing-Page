@@ -12,29 +12,29 @@ const Footer: FC = () => {
   const GOOGLE_SHEET_WEBHOOK =
     "https://script.google.com/macros/s/AKfycbxSbk_cKQmu6idySJWrUeCtY9KrozK5xa5oG8cHYpSp3-PDqqLeSfGRH3tj5b7Z4Sgj/exec";
 
- const handleSubmit = async (e: React.FormEvent) => {
-   e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-   if (!email) return alert("Please enter your email!");
+    if (!email) return alert("Please enter your email!");
 
-   try {
-     const res = await fetch("/api/subscribe", {
-       method: "POST",
-       headers: { "Content-Type": "application/json" },
-       body: JSON.stringify({ email }),
-     });
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
 
-     if (res.ok) {
-       alert("Subscribed successfully!");
-       setEmail(""); // clear input
-     } else {
-       alert("Failed to subscribe.");
-     }
-   } catch (err) {
-     console.error(err);
-     alert("Error submitting your email.");
-   }
- };
+      if (res.ok) {
+        alert("Subscribed successfully!");
+        setEmail(""); // clear input
+      } else {
+        alert("Failed to subscribe.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Error submitting your email.");
+    }
+  };
 
   return (
     <footer className="bg-darkmode relative z-1 border-t border-dark_border px-6">
@@ -81,7 +81,7 @@ const Footer: FC = () => {
               <div className="sm:block flex items-center gap-3">
                 <p className="text-base font-bold text-white">Email</p>
                 <Link
-                  href="mailto:info@venus.com"
+                  href="mailto:info@Jibon.com"
                   className="text-2xl text-white/50 hover:text-white"
                 >
                   jibon2230@gmail.com

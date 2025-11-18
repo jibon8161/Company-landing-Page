@@ -1,9 +1,21 @@
 // This is a mock data source. In a real app, you might fetch this
 // from a headless CMS, a database, or a local JSON file.
 const portfolioItems = [
-  { slug: "project-alpha", title: "Project Alpha", content: "Details about project Alpha..." },
-  { slug: "project-beta", title: "Project Beta", content: "Details about project Beta..." },
-  { slug: "venus-nextjs", title: "Venus Next.js Theme", content: "Details about the Venus theme..." },
+  {
+    slug: "project-alpha",
+    title: "Project Alpha",
+    content: "Details about project Alpha...",
+  },
+  {
+    slug: "project-beta",
+    title: "Project Beta",
+    content: "Details about project Beta...",
+  },
+  {
+    slug: "Jibon-nextjs",
+    title: "Jibon Next.js Theme",
+    content: "Details about the Jibon theme...",
+  },
 ];
 
 // This function tells Next.js which slugs to pre-render at build time.
@@ -16,7 +28,11 @@ export async function generateStaticParams() {
 }
 
 // This is your page component.
-export default function PortfolioPage({ params }: { params: { slug: string } }) {
+export default function PortfolioPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   // Find the specific portfolio item based on the slug from the URL.
   const item = portfolioItems.find((p) => p.slug === params.slug);
 
