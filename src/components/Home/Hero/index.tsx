@@ -57,6 +57,14 @@ const Hero = () => {
                 quality={100}
                 className="w-10! h-10! rounded-full border border-solid border-white -ml-3"
               />
+              <Image
+                src={getImgPath("/images/hero/hero-profile-3.jpg")}
+                alt="hero-image"
+                width={40}
+                height={40}
+                quality={100}
+                className="w-10! h-10! rounded-full border border-solid border-white -ml-3"
+              />
             </div>
             <div>
               <p className="text-sm font-normal text-grey max-w-56">

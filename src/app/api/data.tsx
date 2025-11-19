@@ -18,11 +18,11 @@ export const count = [
     {
         icon: getImgPath("/images/counter/admin.svg"),
         value: "364",
-        description: "Client testimonials received in the year 2024",
+        description: "Client testimonials received in the year 2024-2025",
     },
     {
         icon: getImgPath("/images/counter/bag.svg"),
-        value: "2M+",
+        value: "50K",
         description: "Revenue generated through new projects & marketing",
     },
 ];
