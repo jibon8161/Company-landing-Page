@@ -25,7 +25,7 @@ const getLatestBlogs = async (): Promise<Blog[]> => {
     }));
 };
 
-const Blog = async () => {
+const BlogSection = async () => {
   const posts = await getLatestBlogs();
 
   return (
@@ -64,4 +64,4 @@ const Blog = async () => {
   );
 };
 
-export default Blog;
+export default BlogSection;

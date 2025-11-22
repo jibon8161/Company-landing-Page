@@ -35,23 +35,72 @@ export const Progress = [
   { title: "Data Entry & Processing", Progress: 85 },
 ];
 
-export const Servicebox = [
-    {
-        icon: getImgPath('/images/services/ux-design-product_1.svg'),
-        title: 'UX & Product Design',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    },
-    {
-        icon: getImgPath('/images/services/perfomance-optimization.svg'),
-        title: 'Performance Optimization',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    },
-    {
-        icon: getImgPath('/images/services/ux-design-product_2.svg'),
-        title: 'UX & Products Design',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    },
-]
+export const serviceCategories = [
+  {
+    id: 1,
+    slug: "web-development",
+    icon: "/images/services/perfomance-optimization.svg",
+    title: "Web & Software Development",
+    shortDescription: "Modern, fast and scalable web development solutions.",
+    services: [
+      "Custom Website Development",
+      "Bug Fixing (Node.js & JavaScript)",
+      "Landing Page Development (React & Tailwind CSS)",
+      "MongoDB Code Fix & Optimization",
+      "Chatbot Development",
+    ],
+  },
+  {
+    id: 2,
+    slug: "virtual-assistance",
+    icon: "/images/services/ux-design-product_1.svg",
+    title: "Virtual Assistance & Business Support",
+    shortDescription: "Daily business tasks, admin work and virtual help.",
+    services: [
+      "Virtual Assistant Services",
+      "Data Entry",
+      "Data Collection",
+      "PDF to Excel Conversion",
+      "Word to Excel Conversion",
+    ],
+  },
+  {
+    id: 3,
+    slug: "data-services",
+    icon: "/images/services/ux-design-product_2.svg",
+    title: "Data & Research",
+    shortDescription: "Accurate data scraping, collection & research.",
+    services: [
+      "Web Research",
+      "Data Scraping",
+      "Lead Generation",
+      "LinkedIn Profile Creation & Optimization",
+    ],
+  },
+  {
+    id: 4,
+    slug: "design-branding",
+    icon: "/images/services/perfomance-optimization.svg",
+    title: "Design & Branding",
+    shortDescription: "Creative design and powerful visual brand identity.",
+    services: [
+      "Graphic Design",
+      "Branding & Identity Design",
+      "Book Cover & Interior Design",
+      "Photo Editing",
+      "Wedding Banner Design",
+    ],
+  },
+  {
+    id: 5,
+    slug: "social-media-marketing",
+    icon: "/images/services/ux-design-product_1.svg",
+    title: "Social Media & Marketing",
+    shortDescription: "Grow your online presence and reach new customers.",
+    services: ["Social Media Management", "Facebook Ads Management"],
+  },
+];
+
 
 export const portfolioinfo = [
     {
