@@ -28,7 +28,7 @@ const Hero = () => {
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-midnight_text font-bold dark:text-white text-4xl md:text-5xl md:leading-[1.15] bg-gradient-to-r from-midnight_text to-primary dark:from-white dark:to-primary bg-clip-text text-transparent">
+          <h1 className="text-midnight font-bold dark:text-white text-4xl md:text-5xl md:leading-[1.15] bg-gradient-to-r from-midnight_text to-primary dark:from-white dark:to-primary bg-clip-text text-transparent">
             The Silent Partner in Your{" "}
             <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
               Success.
@@ -36,14 +36,14 @@ const Hero = () => {
           </h1>
 
           {/* Subheading */}
-          <p className="text-grey dark:text-white/70 text-xl font-semibold bg-gradient-to-r from-gray-600 to-gray-800 dark:from-gray-300 dark:to-gray-100 bg-clip-text text-transparent">
+          <p className=" dark:text-white/70 text-xl font-semibold bg-gradient-to-r from-gray-600 to-gray-800 dark:from-gray-300 dark:to-gray-100 bg-clip-text text-transparent">
             Your Engine for Ambition
           </p>
 
           {/* CTA Button */}
           <Link
             href="/contact"
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-primary to-blue-600 text-white px-8 py-4 rounded-2xl font-semibold group/btn hover:shadow-2xl hover:scale-105 transition-all duration-300 shadow-lg mt-4"
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-primary to-orange-300 text-white px-8 py-4 rounded-2xl font-semibold group/btn hover:shadow-2xl hover:scale-105 transition-all duration-300 shadow-lg mt-4"
           >
             <span>Get Started</span>
             <Icon
@@ -97,7 +97,7 @@ const Hero = () => {
                 Need help?{" "}
                 <Link
                   href="/contact"
-                  className="text-primary hover:text-blue-700 font-semibold bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300 inline-block"
+                  className="text-primary hover:text-blue-700 font-semibold bg-gradient-to-r from-primary to-blue-600 bg-clip-text  hover:scale-105 transition-transform duration-300 inline-block"
                 >
                   Contact our experts
                 </Link>{" "}

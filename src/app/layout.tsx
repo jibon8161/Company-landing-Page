@@ -6,6 +6,7 @@ import { ThemeProvider } from "next-themes";
 import ScrollToTop from "@/components/ScrollToTop";
 import Aoscompo from "@/utils/aos";
 import NextTopLoader from "nextjs-toploader";
+import VantaClouds from "@/components/VantaTopology"; // Changed to Clouds
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,10 +24,15 @@ export default function RootLayout({
           enableSystem={true}
           defaultTheme="system"
         >
+          {/* Vanta Clouds Background */}
+          <VantaClouds />
+
           <Aoscompo>
-            <Header />
-            {children}
-            <Footer />
+            <div className="relative z-10">
+              <Header />
+              {children}
+              <Footer />
+            </div>
           </Aoscompo>
           <ScrollToTop />
         </ThemeProvider>

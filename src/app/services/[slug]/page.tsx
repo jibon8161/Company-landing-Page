@@ -1,17 +1,28 @@
+// app/services/[slug]/page.tsx
 import React from "react";
 import Link from "next/link";
 import { serviceCategories } from "@/app/api/data";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 
-export async function generateStaticParams() {
+// UPDATED: Props type for Next.js 15 - params is now a Promise
+interface CategoryPageProps {
+  params: Promise<{
+    slug: string;
+  }>;
+}
+
+// Static paths for dynamic routing
+export async function generateStaticParams(): Promise<{ slug: string }[]> {
   return serviceCategories.map((category) => ({
     slug: category.slug,
   }));
 }
 
-export default function CategoryPage({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  // UPDATED: Await the params Promise
+  const { slug } = await params;
+
   const category = serviceCategories.find((cat) => cat.slug === slug);
 
   if (!category) {
@@ -97,7 +108,7 @@ const ServiceCard = ({
   index,
 }: {
   service: string;
-  category: any;
+  category: (typeof serviceCategories)[number];
   index: number;
 }) => {
   return (
@@ -121,10 +132,7 @@ const ServiceCard = ({
         <div className="text-center mb-8">
           {/* Icon Container with Gradient */}
           <div className="inline-flex w-20 h-20 mb-6 relative">
-            {/* Icon Background Glow */}
             <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-blue-600/30 rounded-2xl blur-md group-hover:blur-lg transition-all duration-500"></div>
-
-            {/* Icon Container */}
             <div className="relative w-full h-full bg-gradient-to-br from-white to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-2xl shadow-lg flex items-center justify-center group-hover:scale-110 transition-all duration-500 border border-gray-200/50 dark:border-gray-600/50">
               <Image
                 src={category.icon}
@@ -152,47 +160,28 @@ const ServiceCard = ({
 
           {/* Features List */}
           <div className="mt-6 space-y-3">
-            <div className="flex items-center gap-3 group/feature py-2 px-3 rounded-xl hover:bg-white/50 dark:hover:bg-gray-700/30 transition-all duration-300">
-              <div className="flex-shrink-0 w-5 h-5 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center shadow-sm">
-                <Icon
-                  icon="ei:check"
-                  width="10"
-                  height="10"
-                  className="text-white"
-                />
+            {[
+              "Customized Solutions",
+              "Professional Quality",
+              "Timely Delivery",
+            ].map((feature, idx) => (
+              <div
+                key={idx}
+                className="flex items-center gap-3 group/feature py-2 px-3 rounded-xl hover:bg-white/50 dark:hover:bg-gray-700/30 transition-all duration-300"
+              >
+                <div className="flex-shrink-0 w-5 h-5 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center shadow-sm">
+                  <Icon
+                    icon="ei:check"
+                    width="10"
+                    height="10"
+                    className="text-white"
+                  />
+                </div>
+                <span className="text-gray-700 dark:text-gray-200 text-sm font-medium">
+                  {feature}
+                </span>
               </div>
-              <span className="text-gray-700 dark:text-gray-200 text-sm font-medium">
-                Customized Solutions
-              </span>
-            </div>
-
-            <div className="flex items-center gap-3 group/feature py-2 px-3 rounded-xl hover:bg-white/50 dark:hover:bg-gray-700/30 transition-all duration-300">
-              <div className="flex-shrink-0 w-5 h-5 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center shadow-sm">
-                <Icon
-                  icon="ei:check"
-                  width="10"
-                  height="10"
-                  className="text-white"
-                />
-              </div>
-              <span className="text-gray-700 dark:text-gray-200 text-sm font-medium">
-                Professional Quality
-              </span>
-            </div>
-
-            <div className="flex items-center gap-3 group/feature py-2 px-3 rounded-xl hover:bg-white/50 dark:hover:bg-gray-700/30 transition-all duration-300">
-              <div className="flex-shrink-0 w-5 h-5 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center shadow-sm">
-                <Icon
-                  icon="ei:check"
-                  width="10"
-                  height="10"
-                  className="text-white"
-                />
-              </div>
-              <span className="text-gray-700 dark:text-gray-200 text-sm font-medium">
-                Timely Delivery
-              </span>
-            </div>
+            ))}
           </div>
         </div>
 

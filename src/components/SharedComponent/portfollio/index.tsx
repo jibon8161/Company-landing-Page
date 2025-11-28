@@ -28,13 +28,13 @@ const Portfolio = () => {
 
         {/* Main Heading */}
         <h2
-          className="sm:text-4xl text-[28px] leading-tight font-bold text-midnight_text text-center pt-7 pb-4 md:w-4/6 w-full m-auto dark:text-white bg-gradient-to-r from-midnight_text to-primary dark:from-white dark:to-primary bg-clip-text text-transparent"
+          className="sm:text-4xl text-[28px] leading-tight font-bold text-midnight text-center pt-7 pb-4 md:w-4/6 w-full m-auto dark:text-white bg-gradient-to-r from-midnight_text to-primary dark:from-white dark:to-primary bg-clip-text text-transparent"
           data-aos="fade-up"
           data-aos-delay="300"
           data-aos-duration="1000"
         >
           Explore My{" "}
-          <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-[#0B2A24] to-[#225045] bg-clip-text dark:text-[#FFFFFF] text-transparent">
             Portfolio
           </span>{" "}
           Showcase
@@ -48,7 +48,7 @@ const Portfolio = () => {
           data-aos-duration="1000"
         >
           <div className="absolute -inset-4 bg-gradient-to-r from-primary/10 to-blue-600/10 rounded-2xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          <p className="text-lg font-normal text-grey max-w-2xl dark:text-white/50 relative z-10 leading-relaxed">
+          <p className="text-lg font-normal text-[#051f20]  max-w-2xl dark:text-white/50 relative z-10 leading-relaxed">
             Dive into a curated collection of my finest work, showcasing
             expertise across various industries and delivering exceptional
             results for every client.
@@ -56,15 +56,12 @@ const Portfolio = () => {
         </div>
 
         {/* Stats Bar */}
-     
       </div>
 
       {/* Portfolio Cards */}
       <div className="relative z-10">
         <PortfolioCard />
       </div>
-
-   
     </section>
   );
 };

@@ -86,6 +86,114 @@ body {
   @apply overflow-x-hidden;
 }
 
+/* Vanta Background Fix - Make main containers transparent */
+body {
+  background: transparent !important;
+}
+
+main, .main-container, .container {
+  background: transparent !important;
+}
+
+/* Make sections transparent to see Vanta background */
+section {
+  background: transparent !important;
+}
+
+/* Make common background classes transparent */
+.bg-white,
+.bg-section,
+.bg-gray-50,
+.bg-gray-100 {
+  background: transparent !important;
+}
+
+/* But keep important elements with backgrounds */
+.card, .modal, .dropdown, .alert, .badge {
+  background: inherit !important;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) skewX(-12deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-12deg);
+  }
+}
+
+.animate-shine {
+  animation: shine 2s infinite;
+}
+
+/* Same shine animation as progress bar */
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) skewX(-12deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-12deg);
+  }
+}
+
+.animate-shine {
+  animation: shine 2s infinite;
+}
+
+/* Auto glow effects - random timing */
+.auto-glow-1 .auto-glow-border {
+  animation: autoGlow1 6s infinite;
+}
+
+.auto-glow-2 .auto-glow-border {
+  animation: autoGlow2 8s infinite;
+}
+
+.auto-glow-3 .auto-glow-border {
+  animation: autoGlow3 7s infinite;
+}
+
+.auto-glow-4 .auto-glow-border {
+  animation: autoGlow4 9s infinite;
+}
+
+.auto-glow-1 .auto-glow-shine {
+  animation: shine 2s infinite, autoGlow1 6s infinite;
+}
+
+.auto-glow-2 .auto-glow-shine {
+  animation: shine 2s infinite, autoGlow2 8s infinite;
+}
+
+.auto-glow-3 .auto-glow-shine {
+  animation: shine 2s infinite, autoGlow3 7s infinite;
+}
+
+.auto-glow-4 .auto-glow-shine {
+  animation: shine 2s infinite, autoGlow4 9s infinite;
+}
+
+@keyframes autoGlow1 {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@keyframes autoGlow2 {
+  0%, 100% { opacity: 0; }
+  40% { opacity: 1; }
+  80% { opacity: 0; }
+}
+
+@keyframes autoGlow3 {
+  0%, 70% { opacity: 0; }
+  20%, 50% { opacity: 1; }
+}
+
+@keyframes autoGlow4 {
+  0%, 60% { opacity: 0; }
+  30%, 90% { opacity: 1; }
+}
+
 @layer base {
   section {
     @apply py-16;
@@ -133,7 +241,7 @@ body {
 }
 
 .blog-details h2 {
-  @apply mb-8 text-2xl font-bold text-midnight_text dark:text-white sm:text-3xl md:text-[35px] md:leading-[1.28];
+  @apply mb-8 text-2xl font-bold text-midnight_text dark:text-white sm:text-3xl md:text-[35px] md:leading-[1-28];
 }
 
 .blog-details h3 {

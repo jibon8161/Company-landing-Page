@@ -9,17 +9,17 @@ const Logo: React.FC = () => {
         src={getImgPath("/images/logo/logo.svg")}
         alt="logo"
         width={80}
-        height={10}
-        // style={{ width: "auto", height: "auto" }}
+        height={50}
+        style={{ width: "auto", height: "auto" }}
         quality={100}
         className="dark:hidden"
       />
       <Image
         src={getImgPath("/images/logo/logo-white.svg")}
         alt="logo"
-        width={50}
-        height={40}
-        // style={{ width: "auto", height: "auto" }}
+        width={150}
+        height={50}
+        style={{ width: "auto", height: "auto" }}
         quality={100}
         className="dark:block hidden"
       />

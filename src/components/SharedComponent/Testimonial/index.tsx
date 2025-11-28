@@ -55,16 +55,18 @@ const Testimonial = () => {
   ];
 
   const CreateCard: React.FC<CreateCardProps> = ({ card }) => (
-    <div className="p-4 rounded-lg mx-4 shadow hover:shadow-lg transition-all duration-200 w-72 shrink-0 bg-white dark:bg-darklight">
+    <div className="p-4 rounded-lg mx-2 sm:mx-3 md:mx-4 shadow-xl hover:shadow-lg transition-all duration-200 w-[280px] sm:w-64 md:w-72 shrink-0 bg-white dark:bg-darklight shadow-[#87ceeb]">
       <div className="flex gap-2">
         <img
-          className="size-11 rounded-full"
+          className="size-10 sm:size-11 rounded-full"
           src={card.image}
           alt="User Image"
         />
         <div className="flex flex-col">
           <div className="flex items-center gap-1">
-            <p className="text-midnight_text dark:text-white">{card.name}</p>
+            <p className="text-white dark:text-white text-sm sm:text-base">
+              {card.name}
+            </p>
             <svg
               className="mt-0.5"
               width="12"
@@ -86,7 +88,7 @@ const Testimonial = () => {
           </span>
         </div>
       </div>
-      <p className="text-sm py-4 text-gray-800 dark:text-white">
+      <p className="text-sm py-3 sm:py-4 text-white dark:text-white">
         {card.comment}
       </p>
       <div className="flex items-center justify-between text-slate-500 dark:text-white/50 text-xs">
@@ -119,16 +121,16 @@ const Testimonial = () => {
 
   return (
     <section
-      className="scroll-mt-24 bg-section dark:bg-darklight border-none w-full py-16"
+      className="scroll-mt-24 bg-section dark:bg-darklight border-none w-full py-12 sm:py-16"
       id="testimonials"
     >
-      <div className="w-full px-6">
+      <div className="w-full px-4 sm:px-6 ">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-midnight_text dark:text-white mb-4">
+        <div className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-midnight_text dark:text-white mb-3 sm:mb-4">
             Testimonials
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto px-4">
             See what our customers are saying about their experience with our
             services
           </p>
@@ -151,28 +153,83 @@ const Testimonial = () => {
           .marquee-reverse {
             animation-direction: reverse;
           }
+
+          @keyframes shine {
+            0% {
+              transform: translateX(-100%) skewX(-12deg);
+            }
+            100% {
+              transform: translateX(200%) skewX(-12deg);
+            }
+          }
+
+          .animate-shine {
+            animation: shine 3s ease-in-out infinite;
+          }
+
+          .auto-glow-border {
+            transition: opacity 0.3s ease-in-out;
+          }
+
+          .auto-glow-shine {
+            transition: opacity 0.3s ease-in-out;
+          }
+
+          @media (max-width: 640px) {
+            .marquee-inner {
+              animation-duration: 20s;
+            }
+          }
         `}</style>
 
         {/* First Marquee Row */}
-        <div className="container mx-auto marquee-row  overflow-hidden relative">
-          <div className="absolute left-0 top-0 h-full w-20 z-10 pointer-events-none bg-gradient-to-r from-section dark:from-darklight to-transparent"></div>
-          <div className="marquee-inner flex transform-gpu min-w-[200%] py-10">
+        <div className="container mx-auto marquee-row overflow-hidden relative">
+          <div className="absolute left-0 top-0 h-full w-8 sm:w-12 md:w-20 z-10 pointer-events-none bg-gradient-to-r from-transparent dark:from-transparent"></div>
+          <div className="marquee-inner flex transform-gpu min-w-[300%] sm:min-w-[250%] md:min-w-[200%] py-6 sm:py-8 md:py-10">
             {[...cardsData, ...cardsData].map((card, index) => (
-              <CreateCard key={index} card={card} />
+              <div
+                key={index}
+                className="relative group mx-2 sm:mx-3 md:mx-4 overflow-hidden rounded-xl md:rounded-2xl w-[280px] sm:w-64 md:w-72 shrink-0"
+              >
+                {/* Dark Green Background */}
+                <div className="absolute inset-0 bg-[#051F20] rounded-xl md:rounded-2xl z-10"></div>
+
+                {/* Card Content */}
+                <div className="relative z-20">
+                  <CreateCard card={card} />
+                </div>
+
+                {/* Moving Shine Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 animate-shine rounded-xl md:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
             ))}
           </div>
-          <div className="absolute right-0 top-0 h-full w-20 z-10 pointer-events-none bg-gradient-to-l from-section dark:from-darklight to-transparent"></div>
+          <div className="absolute right-0 top-0 h-full w-8 sm:w-12 md:w-20 z-10 pointer-events-none bg-gradient-to-l "></div>
         </div>
 
         {/* Second Marquee Row (Reverse) */}
-        <div className="marquee-row container mx-auto  overflow-hidden relative">
-          <div className="absolute left-0 top-0 h-full w-20 z-10 pointer-events-none bg-gradient-to-r from-section dark:from-darklight to-transparent"></div>
-          <div className="marquee-inner marquee-reverse flex transform-gpu min-w-[200%] py-10">
+        <div className="marquee-row container mx-auto overflow-hidden relative mt-4 sm:mt-6">
+          <div className="absolute left-0 top-0 h-full w-8 sm:w-12 md:w-20 z-10 pointer-events-none bg-gradient-to-r "></div>
+          <div className="marquee-inner marquee-reverse flex transform-gpu min-w-[300%] sm:min-w-[250%] md:min-w-[200%] py-6 sm:py-8 md:py-10">
             {[...cardsData, ...cardsData].map((card, index) => (
-              <CreateCard key={index} card={card} />
+              <div
+                key={index}
+                className="relative group mx-2 sm:mx-3 md:mx-4 overflow-hidden rounded-xl md:rounded-2xl w-[280px] sm:w-64 md:w-72 shrink-0"
+              >
+                {/* Dark Green Background */}
+                <div className="absolute inset-0 bg-[#051F20] rounded-xl md:rounded-2xl z-10"></div>
+
+                {/* Card Content */}
+                <div className="relative z-20">
+                  <CreateCard card={card} />
+                </div>
+
+                {/* Moving Shine Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 animate-shine rounded-xl md:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
             ))}
           </div>
-          <div className="absolute right-0 top-0 h-full w-20 z-10 pointer-events-none bg-gradient-to-l from-section dark:from-darklight to-transparent"></div>
+          <div className="absolute right-0 top-0 h-full w-8 sm:w-12 md:w-20 z-10 pointer-events-none bg-gradient-to-l "></div>
         </div>
       </div>
     </section>

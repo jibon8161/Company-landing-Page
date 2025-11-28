@@ -14,39 +14,45 @@ const Contactform = () => {
     termsAccepted: false,
   });
 
-const handleChange = (
-  e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-) => {
-  const target = e.target;
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const target = e.target;
 
-  // Checkbox input
-  if (target instanceof HTMLInputElement && target.type === "checkbox") {
+    if (target instanceof HTMLInputElement && target.type === "checkbox") {
+      setFormData({
+        ...formData,
+        [target.name]: target.checked,
+      });
+      return;
+    }
+
     setFormData({
       ...formData,
-      [target.name]: target.checked,
+      [target.name]: target.value,
     });
-    return;
-  }
+  };
 
-  // Text, email, textarea
-  setFormData({
-    ...formData,
-    [target.name]: target.value,
-  });
-};
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("USER SUBMITTED DATA:", formData);
 
-
-const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-  console.log("USER SUBMITTED DATA:", formData);
-};
-
+    // Clear form after submit
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      country: "",
+      message: "",
+      termsAccepted: false,
+    });
+  };
 
   return (
-    <section className="overflow-x-hidden bg-darkmode dark:bg-darklight">
+    <section className="overflow-x-hidden bg-gray-100 dark:bg-darkmode font-bold">
       <div className="container mx-auto max-w-6xl px-4">
         <div className="grid md:grid-cols-12 grid-cols-1 md:gap-7 gap-0">
-          {/* LEFT SIDE CONTENT (unchanged) */}
+          {/* LEFT SIDE CONTENT */}
           <div
             className="row-start-1 col-start-1 row-end-2 md:col-end-7 col-end-12"
             data-aos="fade-left"
@@ -55,40 +61,48 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
           >
             <div className="flex gap-2 items-center justify-start">
               <span className="w-3 h-3 rounded-full bg-success"></span>
-              <span className="font-medium text-sm text-white">
+              <span className="font-medium text-sm text-blue-600 dark:text-blue-400">
                 build everything
               </span>
             </div>
 
-            <h2 className="sm:text-4xl text-[28px] leading-tight font-bold text-white py-12">
-              Let’s discuss about your project and take it the next level.
+            <h2 className="sm:text-4xl text-[28px] leading-tight font-bold text-gray-900 dark:text-white py-12">
+              Let's discuss about your project and take it to the next level.
             </h2>
 
-            <div className="grid grid-cols-6 pb-12 border-b border-dark_border ">
+            <div className="grid grid-cols-6 pb-12 border-b border-gray-300 dark:border-dark_border">
               <div className="col-span-3">
-                <span className="text-white/50 text-lg">Phone</span>
-                <p className="bg-transparent border-0 text-white text-lg">
+                <span className="text-blue-600 dark:text-blue-400 text-lg">
+                  Phone
+                </span>
+                <p className="bg-transparent border-0 text-gray-900 dark:text-white text-lg">
                   +323-25-8964
                 </p>
               </div>
 
               <div className="col-span-3">
-                <span className="text-white/50 text-lg">Email</span>
-                <p className="bg-transparent border-0 text-white text-lg">
+                <span className="text-blue-600 dark:text-blue-400 text-lg">
+                  Email
+                </span>
+                <p className="bg-transparent border-0 text-gray-900 dark:text-white text-lg">
                   me@landingpro.com
                 </p>
               </div>
 
               <div className="col-span-6 pt-8">
-                <span className="text-white/50 text-lg">Location</span>
-                <p className="bg-transparent border-0 text-white text-lg">
-                  Mark Avenue, Dalls Road, New York
+                <span className="text-gray-900 dark:text-white text-lg">
+                  Location
+                </span>
+                <p className="bg-transparent border-0 text-gray-900 dark:text-white text-lg">
+                  Mark Avenue, Dallas Road, New York
                 </p>
               </div>
             </div>
 
             <div className="pt-12">
-              <p className="text-white/50 pb-4 text-base">Trusted by</p>
+              <p className="text-blue-600 dark:text-blue-400 pb-4 text-base">
+                Trusted by
+              </p>
 
               <div className="flex items-center flex-wrap md:gap-14 gap-7">
                 <Image
@@ -100,7 +114,6 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                   quality={100}
                   className="w_f max-w-28 w-full h-5"
                 />
-
                 <Image
                   src={getImgPath("/images/contact/play-juction.png")}
                   alt="play-juction"
@@ -110,7 +123,6 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                   quality={100}
                   className="w_f max-w-24 w-full h-6"
                 />
-
                 <Image
                   src={getImgPath("/images/contact/stripe.png")}
                   alt="stripe"
@@ -120,7 +132,6 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                   quality={100}
                   className="w_f max-w-14 w-full h-6"
                 />
-
                 <Image
                   src={getImgPath("/images/contact/wise.png")}
                   alt="wise"
@@ -141,8 +152,8 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
             data-aos-duration="1000"
             className="relative before:content-[''] before:absolute before:bg-[url('/images/contact/form-line.png')] before:bg-no-repeat before:w-[13rem] before:h-24 before:top-5% before:bg-contain before:left-[35%] before:z-1 before:translate-x-full lg:before:inline-block before:hidden after:content-[''] after:absolute after:bg-[url('/images/contact/from-round-line.png')] after:bg-no-repeat after:w-[6.3125rem] after:h-[6.3125rem] after:bg-contain after:top-1/2 after:-left-[25%] after:z-1 after:translate-x-1/2 after:translate-y-1/2 md:after:inline-block after:hidden md:row-start-1 row-start-2 md:col-start-8 col-start-1 row-end-2 col-end-13"
           >
-            <div className="lg:mt-0 mt-8 bg-white dark:bg-darkmode max-w-[50rem] m-auto pt-[2.1875rem] pb-8 px-[2.375rem] rounded-md relative z-10">
-              <h2 className="sm:text-3xl text-lg font-bold text-midnight_text mb-3 dark:text-white">
+            <div className="lg:mt-0 mt-8 bg-[#235146] dark:bg-[#8BB297] max-w-[50rem] m-auto pt-[2.1875rem] pb-8 px-[2.375rem] rounded-md relative z-10 shadow-lg border border-gray-200 dark:border-gray-700">
+              <h2 className="sm:text-3xl text-lg font-bold text-white dark:text-white mb-3">
                 Start the project
               </h2>
 
@@ -150,9 +161,9 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                 className="flex w-full m-auto justify-between flex-wrap gap-4"
                 onSubmit={handleSubmit}
               >
-                <div className="flex gap-4">
+                <div className="flex gap-4 w-full">
                   <input
-                    className="text-midnight_text w-full text-base transition-[0.5s] bg-transparent dark:border-dark_border dark:text-white px-[0.9375rem] py-[0.830rem] border border-border border-solid focus:border-primary dark:focus:border-primary placeholder:text-grey rounded-lg focus-visible:outline-0"
+                    className="text-white w-full text-base transition-[0.5s] bg-white/10 backdrop-blur-sm dark:border-gray-600 px-[0.9375rem] py-[0.830rem] border border-white/30 border-solid focus:border-white focus:bg-white/20 dark:focus:border-primary placeholder:text-black rounded-lg focus-visible:outline-0"
                     type="text"
                     placeholder="First name"
                     name="firstName"
@@ -162,7 +173,7 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 
                   <input
                     type="text"
-                    className="text-midnight_text w-full text-base transition-[0.5s] bg-transparent dark:border-dark_border dark:text-white px-[0.9375rem] py-[0.830rem] border border-border border-solid focus:border-primary dark:focus:border-primary placeholder:text-grey rounded-lg focus-visible:outline-0"
+                    className="text-white w-full text-base transition-[0.5s] bg-white/10 backdrop-blur-sm dark:border-gray-600 px-[0.9375rem] py-[0.830rem] border border-white/30 border-solid focus:border-white focus:bg-white/20 dark:focus:border-primary placeholder:text-black rounded-lg focus-visible:outline-0"
                     placeholder="Last name"
                     name="lastName"
                     value={formData.lastName}
@@ -173,7 +184,7 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                 <div className="w-full">
                   <input
                     type="email"
-                    className="text-midnight_text w-full text-base transition-[0.5s] bg-transparent dark:border-dark_border dark:text-white px-[0.9375rem] py-[0.830rem] border border-border border-solid focus:border-primary dark:focus:border-primary placeholder:text-grey rounded-lg focus-visible:outline-0"
+                    className="text-white w-full text-base transition-[0.5s] bg-white/10 backdrop-blur-sm dark:border-gray-600 px-[0.9375rem] py-[0.830rem] border border-white/30 border-solid focus:border-white focus:bg-white/20 dark:focus:border-primary placeholder:text-black rounded-lg focus-visible:outline-0"
                     placeholder="youremail@website.com"
                     name="email"
                     value={formData.email}
@@ -183,7 +194,7 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 
                 <div className="w-full">
                   <input
-                    className="text-midnight_text w-full text-base transition-[0.5s] bg-transparent dark:border-dark_border dark:text-white px-[0.9375rem] py-[0.830rem] border border-border border-solid focus:border-primary dark:focus:border-primary placeholder:text-grey rounded-lg focus-visible:outline-0"
+                    className="text-white w-full text-base transition-[0.5s] bg-white/10 backdrop-blur-sm dark:border-gray-600 px-[0.9375rem] py-[0.830rem] border border-white/30 border-solid focus:border-white focus:bg-white/20 dark:focus:border-primary placeholder:text-black rounded-lg focus-visible:outline-0"
                     type="text"
                     placeholder="Country"
                     name="country"
@@ -194,7 +205,7 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 
                 <div className="w-full">
                   <textarea
-                    className="text-midnight_text h-[9.375rem] w-full text-base transition-[0.5s] bg-transparent dark:border-dark_border dark:text-white px-[0.9375rem] py-[0.830rem] border! border-border border-solid! focus:border-primary dark:focus:border-primary placeholder:text-grey rounded-lg focus-visible:outline-0"
+                    className="text-white h-[9.375rem] w-full text-base transition-[0.5s] bg-white/10 backdrop-blur-sm dark:border-gray-600 px-[0.9375rem] py-[0.830rem] border border-white/30 border-solid focus:border-white focus:bg-white/20 dark:focus:border-primary placeholder:text-black rounded-lg focus-visible:outline-0"
                     placeholder="Let us know about your project"
                     name="message"
                     value={formData.message}
@@ -202,7 +213,7 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                   ></textarea>
                 </div>
 
-                <div className="flex">
+                <div className="flex items-center w-full">
                   <input
                     id="wp-comment-cookies-consent"
                     name="termsAccepted"
@@ -210,19 +221,22 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                     value="yes"
                     checked={formData.termsAccepted}
                     onChange={handleChange}
-                    className="hover:opacity-1 checked:bg-primary checked:opacity-1 relative border-2 border-solid border-primary rounded-xs bg-none cursor-pointer leading-none mr-2 outline-0 p-0! align-text-top h-[1.25rem] sm:w-[1.25rem] w-[2.25rem] opacity-[0.5] before:content-[''] before:absolute before:right-1/2 before:top-1/2 before:w-1 before:h-2 before:z-2 before:-mt-[0.0625rem] before:-ml-[0.0625rem] before:-mr-[0.0625rem] before:transform before:rotate-45 before:translate-x-[-50%] before:translate-y-[-50%] dark:focus:border-primary"
+                    className="hover:opacity-100 checked:bg-white checked:border-white relative border-2 border-solid border-white rounded-xs bg-transparent cursor-pointer leading-none mr-3 outline-0 p-0 align-text-top h-5 w-5 transition-all duration-300"
                   />
-                  <div className="text-grey dark:text-white/50">
+                  <label
+                    htmlFor="wp-comment-cookies-consent"
+                    className="text-white dark:text-white cursor-pointer text-sm"
+                  >
                     I have read and acknowledge the{" "}
-                    <p className="text-primary inline cursor-pointer">
+                    <span className="text-white font-semibold underline hover:no-underline cursor-pointer">
                       Terms and Conditions
-                    </p>
-                  </div>
+                    </span>
+                  </label>
                 </div>
 
                 <div className="w-full">
                   <button
-                    className="w-full bg-primary hover:bg-blue-700 text-white py-3 rounded-lg"
+                    className="w-full bg-[#FFFFFF] text-[#235146] hover:bg-gray-100 font-semibold py-3 rounded-lg transition-colors duration-300 shadow-md hover:shadow-lg"
                     type="submit"
                   >
                     Submit Inquiry

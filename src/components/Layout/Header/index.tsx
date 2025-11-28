@@ -57,7 +57,7 @@ const Header: React.FC = () => {
     <header
       className={`fixed h-24 top-0 py-1 z-50 w-full dark:bg-transparent transition-all ${
         sticky
-          ? "shadow-lg bg-white dark:shadow-dark-md dark:bg-darklight!"
+          ? "shadow-lg bg-[#8BB398] dark:shadow-dark-md dark:bg-[#596E3B]!  "
           : "shadow-none"
       }`}
     >
@@ -114,7 +114,7 @@ const Header: React.FC = () => {
 
       <div
         ref={mobileMenuRef}
-        className={`lg:hidden fixed top-0 right-0 h-full w-full bg-white dark:bg-darkmode shadow-lg transform transition-transform duration-300 max-w-xs ${
+        className={`lg:hidden fixed top-0 right-0 h-full w-full bg-blue-100/80 dark:bg- shadow-lg transform transition-transform duration-300 max-w-xs ${
           navbarOpen ? "translate-x-0" : "translate-x-full"
         } z-50`}
       >

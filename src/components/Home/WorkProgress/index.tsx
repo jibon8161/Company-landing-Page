@@ -67,17 +67,23 @@ const Progresswork = ({ isColorMode }: { isColorMode: Boolean }) => {
                   key={index}
                   className="progress_bar_item flex flex-wrap mb-8"
                 >
-                  <div className="flex-1 w-auto text-sm font-normal text-grey mb-2 dark:text-white/50">
+                  <div className="flex-1 w-auto text-sm font-bold mb-2 text-gray-700 dark:text-white/50">
                     {item.title}
                   </div>
-                  <div className="item_value shrink text-sm font-normal text-grey mb-2 dark:text-white/50">
+                  <div className="item_value shrink text-sm font-normal text-black mb-2 dark:text-white/50">
                     {item.Progress}%
                   </div>
-                  <div className="relative h-1 w-full bg-primary/30 rounded-md">
+                  <div className="relative h-1 w-full bg-sky-200/30 rounded-md">
                     <div
-                      className="progress absolute left-0 top-0 bottom-0 h-full bg-primary rounded-md duration-100 ease-in-out"
+                      className="progress absolute left-0 top-0 bottom-0 h-full rounded-md duration-100 ease-in-out overflow-hidden"
                       style={{ width: `${item.Progress}%` }}
-                    ></div>
+                    >
+                      {/* Cloud-themed Gradient Background */}
+                      <div className="w-full h-full bg-gradient-to-r from-sky-400 via-blue-300 to-cyan-300 rounded-md"></div>
+
+                      {/* Cloud White Shine Effect - Only on the progress line */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent transform -skew-x-12 animate-shine rounded-md"></div>
+                    </div>
                   </div>
                 </div>
               ))}
