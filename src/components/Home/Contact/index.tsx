@@ -14,6 +14,8 @@ const Contactform = () => {
     termsAccepted: false,
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -33,19 +35,52 @@ const Contactform = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("USER SUBMITTED DATA:", formData);
 
-    // Clear form after submit
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      country: "",
-      message: "",
-      termsAccepted: false,
-    });
+    if (!formData.termsAccepted) {
+      alert("Please accept the Terms and Conditions");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Send to Brevo API
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        console.log("FORM SUBMITTED SUCCESSFULLY TO BREVO:", formData);
+
+        // Clear form after successful submit
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          country: "",
+          message: "",
+          termsAccepted: false,
+        });
+
+        // Optional: Show success message
+        alert("Thank you! Your message has been sent successfully.");
+      } else {
+        throw new Error("Failed to submit form");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert(
+        "Sorry, there was an error sending your message. Please try again."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -169,6 +204,7 @@ const Contactform = () => {
                     name="firstName"
                     value={formData.firstName}
                     onChange={handleChange}
+                    required
                   />
 
                   <input
@@ -178,6 +214,7 @@ const Contactform = () => {
                     name="lastName"
                     value={formData.lastName}
                     onChange={handleChange}
+                    required
                   />
                 </div>
 
@@ -189,6 +226,7 @@ const Contactform = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
+                    required
                   />
                 </div>
 
@@ -210,6 +248,7 @@ const Contactform = () => {
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
+                    required
                   ></textarea>
                 </div>
 
@@ -222,6 +261,7 @@ const Contactform = () => {
                     checked={formData.termsAccepted}
                     onChange={handleChange}
                     className="hover:opacity-100 checked:bg-white checked:border-white relative border-2 border-solid border-white rounded-xs bg-transparent cursor-pointer leading-none mr-3 outline-0 p-0 align-text-top h-5 w-5 transition-all duration-300"
+                    required
                   />
                   <label
                     htmlFor="wp-comment-cookies-consent"
@@ -236,10 +276,11 @@ const Contactform = () => {
 
                 <div className="w-full">
                   <button
-                    className="w-full bg-[#FFFFFF] text-[#235146] hover:bg-gray-100 font-semibold py-3 rounded-lg transition-colors duration-300 shadow-md hover:shadow-lg"
+                    className="w-full bg-[#FFFFFF] text-[#235146] hover:bg-gray-100 font-semibold py-3 rounded-lg transition-colors duration-300 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                     type="submit"
+                    disabled={isSubmitting}
                   >
-                    Submit Inquiry
+                    {isSubmitting ? "Sending..." : "Submit Inquiry"}
                   </button>
                 </div>
               </form>

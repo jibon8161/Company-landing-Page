@@ -9,9 +9,6 @@ const Footer: FC = () => {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const GOOGLE_SHEET_WEBHOOK =
-    "https://script.google.com/macros/s/AKfycbxSbk_cKQmu6idySJWrUeCtY9KrozK5xa5oG8cHYpSp3-PDqqLeSfGRH3tj5b7Z4Sgj/exec";
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -166,7 +163,7 @@ const Footer: FC = () => {
               </p>
               <form
                 onSubmit={handleSubmit}
-                className="newsletter-form flex rounded-lg sm:w-full w-3/4 sm:mx-0 mx-auto"
+                className="newsletter-form flex rounded-lg sm:w-full w-3/4 sm:mx-0 mx-auto bg-[#ffffff]"
               >
                 <input
                   type="email"
@@ -174,7 +171,7 @@ const Footer: FC = () => {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="p-4 text-base border-transparent rounded-s-lg rounded-e-none! outline-0 focus:border-primary dark:focus:border-primary w-[calc(100%_-_137px)] flex bg-white dark:bg-midnight_text dark:text-white dark:border-solid dark:border dark:border-border_color"
+                  className="p-4 text-base border-transparent rounded-s-lg rounded-e-none! outline-0 focus:border-primary dark:focus:border-primary w-[calc(100%_-_137px)] flex bg-white dark:bg-midnight_text dark:text-black dark:border-solid dark:border dark:border-border_color"
                 />
                 <button
                   type="submit"

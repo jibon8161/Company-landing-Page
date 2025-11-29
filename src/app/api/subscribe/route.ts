@@ -2,14 +2,18 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    const res = await fetch(
-      "https://script.google.com/macros/s/AKfycbxSbk_cKQmu6idySJWrUeCtY9KrozK5xa5oG8cHYpSp3-PDqqLeSfGRH3tj5b7Z4Sgj/exec",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      }
-    );
+    // Use environment variable
+    const GOOGLE_SHEET_WEBHOOK = process.env.GOOGLE_SHEET_WEBHOOK;
+
+    if (!GOOGLE_SHEET_WEBHOOK) {
+      throw new Error("Google Sheet webhook URL not configured");
+    }
+
+    const res = await fetch(GOOGLE_SHEET_WEBHOOK, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
 
     const data = await res.text();
 
