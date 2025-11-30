@@ -39,12 +39,9 @@ const BlogPage = async ({ params }: Props) => {
   const { slug } = await params;
 
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/blogs/${slug}`,
-      {
-        next: { revalidate: 3600 }, // Cache for 1 hour
-      }
-    );
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blogs/${slug}`, {
+      next: { revalidate: 3600 }, // Cache for 1 hour
+    });
 
     if (!res.ok) {
       return notFound();

@@ -6,7 +6,7 @@ const BlogCard = ({ blog }: { blog: Blog }) => {
   if (!blog) return null;
 
   return (
-    <div className="group mb-0 relative">
+    <div className="group mb-0 relative bg-Sky-blue-mist">
       <div className="mb-8 overflow-hidden rounded-lg">
         <Link
           href={`/blog/${blog.slug}`}
