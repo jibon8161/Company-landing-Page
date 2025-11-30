@@ -30,7 +30,10 @@ function convertTimezone(time, fromTimezone, toTimezone, date) {
   }
 }
 
+
+
 export async function POST(request) {
+  console.log("✅ CONSULTATION API HIT on Vercel"); // ← ADD THIS LINE
   try {
     const body = await request.json();
     const submissionDate = new Date().toLocaleString();

@@ -50,7 +50,7 @@ const ContactForm = () => {
    try {
      console.log("Submitting form data:", formData);
 
-     const response = await fetch("/api/consultation/", {
+     const response = await fetch("/api/consultation", {
        // ← TRAILING SLASH ADDED
        method: "POST",
        headers: {
