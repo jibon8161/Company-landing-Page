@@ -81,7 +81,7 @@ const Footer: FC = () => {
                   href="mailto:info@Jibon.com"
                   className="text-2xl text-white/50 hover:text-white"
                 >
-                  jibon2230@gmail.com
+                  mno-reply@brevo.com
                 </Link>
               </div>
               <div>

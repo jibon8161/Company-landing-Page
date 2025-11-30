@@ -75,7 +75,7 @@ export async function POST(request: NextRequest) {
         },
         to: [
           {
-            email: "jibon2230@gmail.com", // COMPANY EMAIL
+            email: "mno-reply@brevo.com", // COMPANY EMAIL
             name: "BeesZone Team",
           },
         ],

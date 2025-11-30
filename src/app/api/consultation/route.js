@@ -136,7 +136,7 @@ export async function POST(request) {
         },
         to: [
           {
-            email: "jibon2230@gmail.com",
+            email: "mno-reply@brevo.com",
             name: "BeesZone Team",
           },
         ],

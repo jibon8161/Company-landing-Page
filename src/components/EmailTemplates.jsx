@@ -412,7 +412,7 @@ export const UserConfirmationEmail = ({
       </div>
       
       <div class="contact-info">
-        <p style="margin-bottom: 10px; font-size: 16px;">📧 jibon2230@gmail.com | 📞 +8801717438161</p>
+        <p style="margin-bottom: 10px; font-size: 16px;">📧 mno-reply@brevo.com | 📞 +8801717438161</p>
         <p style="font-size: 16px;">📍 Dhaka, Bangladesh</p>
       </div>
       
