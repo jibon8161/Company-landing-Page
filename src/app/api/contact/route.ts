@@ -6,7 +6,6 @@ import {
   AdminNotificationEmail,
 } from "@/components/EmailTemplates";
 
-
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -72,8 +71,7 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({
         sender: {
           name: "BeesZone Website",
-          email: "mno-reply@brevo.com
-",
+          email: "mno-reply@brevo.com",
         },
         to: [
           {
@@ -104,8 +102,7 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({
         sender: {
           name: "BeesZone Team",
-          email: "mno-reply@brevo.com
-",
+          email: "mno-reply@brevo.com",
         },
         to: [
           {

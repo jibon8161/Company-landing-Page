@@ -132,8 +132,7 @@ export async function POST(request) {
       body: JSON.stringify({
         sender: {
           name: "BeesZone Website",
-          email: "mno-reply@brevo.com
-",
+          email: "mno-reply@brevo.com",
         },
         to: [
           {
@@ -188,8 +187,7 @@ export async function POST(request) {
       body: JSON.stringify({
         sender: {
           name: "BeesZone Team",
-          email: "mno-reply@brevo.com
-",
+          email: "mno-reply@brevo.com",
         },
         to: [
           {
