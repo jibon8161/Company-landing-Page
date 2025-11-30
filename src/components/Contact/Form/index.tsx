@@ -115,7 +115,7 @@ const ContactForm = () => {
           <div className="grid lg:grid-cols-12 gap-12 items-start">
             {/* Form Section */}
             <div className="lg:col-span-8">
-              <div className="dark:bg-[#D5ECD9] bg-[#596E3B] rounded-3xl shadow-2xl p-8 md:p-10 border border-gray-100">
+              <div className="dark:bg-[#396359] bg-[#596E3B] rounded-3xl shadow-2xl p-8 md:p-10 border border-gray-100">
                 <div className="flex items-center gap-4 mb-8">
                   <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-cyan-500 rounded-2xl flex items-center justify-center">
                     <svg
@@ -151,7 +151,7 @@ const ContactForm = () => {
 
                     <div className="grid md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label className="block text-sm font-semibold text-gray-700">
+                        <label className="block text-sm font-semibold text-black">
                           First Name*
                         </label>
                         <input
@@ -166,7 +166,7 @@ const ContactForm = () => {
                       </div>
 
                       <div className="space-y-2">
-                        <label className="block text-sm font-semibold text-gray-700">
+                        <label className="block text-sm font-semibold text-black">
                           Last Name*
                         </label>
                         <input
@@ -183,7 +183,7 @@ const ContactForm = () => {
 
                     <div className="grid md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label className="block text-sm font-semibold text-gray-700">
+                        <label className="block text-sm font-semibold text-black">
                           Email Address*
                         </label>
                         <input
@@ -198,7 +198,7 @@ const ContactForm = () => {
                       </div>
 
                       <div className="space-y-2">
-                        <label className="block text-sm font-semibold text-gray-700">
+                        <label className="block text-sm font-semibold text-black">
                           Country*
                         </label>
                         <input
@@ -255,7 +255,7 @@ const ContactForm = () => {
 
                     <div className="grid md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label className="block text-sm font-semibold text-gray-700">
+                        <label className="block text-sm font-semibold text-black">
                           Service Needed*
                         </label>
                         <select
@@ -292,7 +292,7 @@ const ContactForm = () => {
                       </div>
 
                       <div className="space-y-2">
-                        <label className="block text-sm font-semibold text-gray-700">
+                        <label className="block text-sm font-semibold text-black">
                           Preferred Date*
                         </label>
                         <input
@@ -308,7 +308,7 @@ const ContactForm = () => {
                     </div>
 
                     <div className="space-y-2">
-                      <label className="block text-sm font-semibold text-gray-700">
+                      <label className="block text-sm font-semibold text-black">
                         Preferred Time* (Your Local Time)
                       </label>
                       <input
@@ -319,14 +319,14 @@ const ContactForm = () => {
                         onChange={handleChange}
                         required
                       />
-                      <p className="text-gray-500 text-sm mt-2">
+                      <p className="text-white text-sm mt-2">
                         This will be automatically converted to Our time (UTC+6)
                         for our team
                       </p>
                     </div>
 
                     <div className="space-y-2">
-                      <label className="block text-sm font-semibold text-gray-700">
+                      <label className="block text-sm font-semibold text-black">
                         Project Details & Requirements
                       </label>
                       <textarea

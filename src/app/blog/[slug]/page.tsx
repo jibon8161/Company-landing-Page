@@ -1,4 +1,4 @@
-// /app/blog/[slug]/page.tsx
+// app/blog/[slug]/page.tsx
 import { Blog } from "@/types/blog";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -8,9 +8,15 @@ type Props = { params: Promise<{ slug: string }> };
 
 // Fetch all blog slugs for static generation
 async function getAllSlugs(): Promise<string[]> {
+  // If no API URL is set, return empty array
+  if (!process.env.NEXT_PUBLIC_API_URL) {
+    console.warn("NEXT_PUBLIC_API_URL is not set");
+    return [];
+  }
+
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blogs`, {
-      next: { revalidate: 3600 }, // Revalidate every hour
+      next: { revalidate: 3600 },
     });
 
     if (!res.ok) {
@@ -20,11 +26,7 @@ async function getAllSlugs(): Promise<string[]> {
 
     const json = await res.json();
 
-    // Debug: log the API response to see its structure
-    console.log("API Response:", json);
-
     // Adjust this based on your actual API response structure
-    // Try different possible structures
     const blogs = json.data || json.blogs || json || [];
 
     if (!Array.isArray(blogs)) {
@@ -45,24 +47,41 @@ async function getAllSlugs(): Promise<string[]> {
   }
 }
 
-// Generate static params for known slugs
+// Generate static params with fallback
 export async function generateStaticParams() {
-  const slugs = await getAllSlugs();
-  return slugs.map((slug) => ({ slug }));
+  try {
+    const slugs = await getAllSlugs();
+
+    // If no slugs are returned, provide some fallback slugs
+    // to prevent the build error
+    if (slugs.length === 0) {
+      console.warn("No slugs found, using fallback slugs");
+      return [
+        { slug: "welcome" },
+        { slug: "getting-started" },
+        { slug: "about" },
+      ];
+    }
+
+    return slugs.map((slug) => ({ slug }));
+  } catch (error) {
+    console.error("Error in generateStaticParams:", error);
+    // Return fallback slugs to prevent build failure
+    return [{ slug: "welcome" }, { slug: "getting-started" }];
+  }
 }
 
 // Revalidate the page every hour
 export const revalidate = 3600;
 
 const BlogPage = async ({ params }: Props) => {
-  // UPDATED: Await the params Promise
   const { slug } = await params;
 
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/blogs/${slug}`,
       {
-        next: { revalidate: 3600 }, // Cache for 1 hour
+        next: { revalidate: 3600 },
       }
     );
 
@@ -71,8 +90,6 @@ const BlogPage = async ({ params }: Props) => {
     }
 
     const json = await res.json();
-
-    // Adjust this based on your API response structure
     const blogData = json.data || json;
 
     if (!blogData) return notFound();
@@ -85,7 +102,6 @@ const BlogPage = async ({ params }: Props) => {
         <p className="text-gray-600 mb-6">{blog.date}</p>
 
         <div className="flex flex-col md:flex-row gap-8">
-          {/* Image on the left */}
           {blog.coverImage && (
             <div className="md:w-1/2 flex-shrink-0">
               <Image
@@ -97,8 +113,6 @@ const BlogPage = async ({ params }: Props) => {
               />
             </div>
           )}
-
-          {/* Content on the right */}
           <div className="md:w-1/2">
             <div
               dangerouslySetInnerHTML={{ __html: blog.content }}
