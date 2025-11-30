@@ -8,27 +8,47 @@ type Props = { params: Promise<{ slug: string }> };
 
 // Fetch all blog slugs for static generation
 async function getAllSlugs(): Promise<string[]> {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blogs`, {
-    next: { revalidate: 3600 }, // Revalidate every hour
-  });
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blogs`, {
+      next: { revalidate: 3600 }, // Revalidate every hour
+    });
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch blogs");
+    if (!res.ok) {
+      console.error(`API responded with status: ${res.status}`);
+      return [];
+    }
+
+    const json = await res.json();
+
+    // Debug: log the API response to see its structure
+    console.log("API Response:", json);
+
+    // Adjust this based on your actual API response structure
+    // Try different possible structures
+    const blogs = json.data || json.blogs || json || [];
+
+    if (!Array.isArray(blogs)) {
+      console.error("Expected array but got:", typeof blogs);
+      return [];
+    }
+
+    // Extract slugs - adjust property name based on your API
+    const slugs = blogs
+      .map((blog: any) => blog.slug || blog._id || blog.id)
+      .filter(Boolean);
+
+    console.log("Generated slugs:", slugs);
+    return slugs;
+  } catch (error) {
+    console.error("Error in getAllSlugs:", error);
+    return [];
   }
-
-  const json = await res.json();
-  return json.data.map((blog: any) => blog.slug);
 }
 
 // Generate static params for known slugs
 export async function generateStaticParams() {
-  try {
-    const slugs = await getAllSlugs();
-    return slugs.map((slug) => ({ slug }));
-  } catch (error) {
-    console.error("Error generating static params:", error);
-    return [];
-  }
+  const slugs = await getAllSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 // Revalidate the page every hour
@@ -39,9 +59,12 @@ const BlogPage = async ({ params }: Props) => {
   const { slug } = await params;
 
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blogs/${slug}`, {
-      next: { revalidate: 3600 }, // Cache for 1 hour
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/blogs/${slug}`,
+      {
+        next: { revalidate: 3600 }, // Cache for 1 hour
+      }
+    );
 
     if (!res.ok) {
       return notFound();
@@ -49,9 +72,12 @@ const BlogPage = async ({ params }: Props) => {
 
     const json = await res.json();
 
-    if (!json.success || !json.data) return notFound();
+    // Adjust this based on your API response structure
+    const blogData = json.data || json;
 
-    const blog: Blog = { ...json.data, _id: json.data._id.toString() };
+    if (!blogData) return notFound();
+
+    const blog: Blog = { ...blogData, _id: blogData._id?.toString() };
 
     return (
       <div className="pt-40 container mx-auto w-full py-10">
