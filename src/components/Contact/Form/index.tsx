@@ -115,7 +115,7 @@ const ContactForm = () => {
           <div className="grid lg:grid-cols-12 gap-12 items-start">
             {/* Form Section */}
             <div className="lg:col-span-8">
-              <div className="bg-[#D5ECD9] rounded-3xl shadow-2xl p-8 md:p-10 border border-gray-100">
+              <div className="dark:bg-[#D5ECD9] bg-[#596E3B] rounded-3xl shadow-2xl p-8 md:p-10 border border-gray-100">
                 <div className="flex items-center gap-4 mb-8">
                   <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-cyan-500 rounded-2xl flex items-center justify-center">
                     <svg
@@ -133,7 +133,7 @@ const ContactForm = () => {
                     </svg>
                   </div>
                   <div>
-                    <h2 className="text-3xl font-bold text-gray-900">
+                    <h2 className="text-3xl font-bold dark:text-black text-white">
                       Schedule Your Consultation
                     </h2>
                     <p className="text-gray-600">
@@ -145,7 +145,7 @@ const ContactForm = () => {
                 <form onSubmit={handleSubmit} className="space-y-8">
                   {/* Personal Information Section */}
                   <div className="space-y-6">
-                    <h3 className="text-lg font-semibold text-gray-900 border-l-4 border-emerald-500 pl-4">
+                    <h3 className="text-lg font-semibold text-white border-l-4 border-emerald-500 pl-4">
                       Personal Information
                     </h3>
 
@@ -216,7 +216,7 @@ const ContactForm = () => {
 
                   {/* Timezone Section */}
                   <div className="space-y-4">
-                    <h3 className="text-lg font-semibold text-gray-900 border-l-4 border-blue-500 pl-4">
+                    <h3 className="text-lg font-semibold text-white border-l-4 border-blue-500 pl-4">
                       Timezone Information
                     </h3>
 
@@ -234,7 +234,7 @@ const ContactForm = () => {
                           </p>
                           <p className="text-blue-600 text-sm">
                             We'll schedule according to your local time and
-                            convert it to Bangladesh time automatically
+                            convert it to Our time automatically
                           </p>
                         </div>
                         <div className="text-3xl">🌍</div>
@@ -249,7 +249,7 @@ const ContactForm = () => {
 
                   {/* Consultation Details Section */}
                   <div className="space-y-6">
-                    <h3 className="text-lg font-semibold text-gray-900 border-l-4 border-purple-500 pl-4">
+                    <h3 className="text-lg font-semibold text-white border-l-4 border-purple-500 pl-4">
                       Consultation Details
                     </h3>
 
@@ -394,7 +394,7 @@ const ContactForm = () => {
             <div className="lg:col-span-4 space-y-8">
               {/* Benefits Card */}
               <div className="bg-[#D5ECD9] rounded-3xl shadow-xl p-8 border border-gray-100">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">
+                <h3 className="text-2xl font-bold text-white mb-6">
                   Why Choose Our Consultation?
                 </h3>
                 <div className="space-y-4">
@@ -436,7 +436,7 @@ const ContactForm = () => {
                     >
                       <div className="text-2xl flex-shrink-0">{item.icon}</div>
                       <div>
-                        <h4 className="font-semibold text-gray-900">
+                        <h4 className="font-semibold text-white">
                           {item.title}
                         </h4>
                         <p className="text-gray-600 text-sm">{item.desc}</p>

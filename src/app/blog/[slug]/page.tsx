@@ -8,7 +8,7 @@ type Props = { params: Promise<{ slug: string }> };
 
 // Fetch all blog slugs for static generation
 async function getAllSlugs(): Promise<string[]> {
-  const res = await fetch("http://localhost:5000/blogs", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blogs`, {
     next: { revalidate: 3600 }, // Revalidate every hour
   });
 
@@ -39,9 +39,12 @@ const BlogPage = async ({ params }: Props) => {
   const { slug } = await params;
 
   try {
-    const res = await fetch(`http://localhost:5000/blogs/${slug}`, {
-      next: { revalidate: 3600 }, // Cache for 1 hour
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/blogs/${slug}`,
+      {
+        next: { revalidate: 3600 }, // Cache for 1 hour
+      }
+    );
 
     if (!res.ok) {
       return notFound();

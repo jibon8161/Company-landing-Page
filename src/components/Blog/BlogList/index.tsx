@@ -2,7 +2,7 @@ import BlogCard from "@/components/SharedComponent/Blog/blogCard";
 import { Blog } from "@/types/blog";
 
 async function getBlogs(): Promise<Blog[]> {
-  const res = await fetch("http://localhost:5000/blogs", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blogs`, {
     next: { revalidate: 60 },
   });
   const json = await res.json();

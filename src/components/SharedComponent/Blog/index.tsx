@@ -14,7 +14,7 @@ const BlogSection = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await fetch("http://localhost:5000/blogs", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blogs`, {
           cache: "no-store",
         });
         const json = await res.json();
@@ -141,7 +141,7 @@ const ModernBlogCardWrapper = ({
   };
 
   return (
-    <article className="group relative bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] border border-gray-100 dark:border-gray-700">
+    <article className="group relative bg-[#173427] dark:bg-gray-800 rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] border border-gray-100 dark:border-gray-700">
       {/* Gradient Background Effect */}
       <div
         className={`absolute inset-0 bg-gradient-to-br ${getGradient(
@@ -165,7 +165,7 @@ const ModernBlogCardWrapper = ({
       ></div>
 
       {/* Card Content */}
-      <div className="relative z-10 h-full bg-white dark:bg-gray-800 rounded-3xl p-1">
+      <div className="relative z-10 h-full bg-[#173427] dark:bg-gray-800 rounded-3xl p-1">
         {/* Gradient Accent Bar */}
         <div
           className={`w-full h-1 bg-gradient-to-r ${getGradient(
