@@ -43,50 +43,56 @@ const ContactForm = () => {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+   e.preventDefault();
+   setIsSubmitting(true);
 
-    try {
-      const response = await fetch("/api/consultation", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+   try {
+     console.log("Submitting form data:", formData);
 
-      if (response.ok) {
-        console.log("CONSULTATION FORM SUBMITTED SUCCESSFULLY:", formData);
+     const response = await fetch("/api/consultation/", {
+       // ← TRAILING SLASH ADDED
+       method: "POST",
+       headers: {
+         "Content-Type": "application/json",
+       },
+       body: JSON.stringify(formData),
+     });
 
-        // Clear form after successful submit
-        setFormData({
-          firstName: "",
-          lastName: "",
-          email: "",
-          country: "",
-          timezone: userTimezone,
-          specialist: "",
-          date: "",
-          time: "",
-          message: "",
-        });
+     console.log("Response status:", response.status);
 
-        alert(
-          "Thank you! Your consultation request has been sent successfully. We'll contact you soon to confirm the meeting."
-        );
-      } else {
-        throw new Error("Failed to submit consultation form");
-      }
-    } catch (error) {
-      console.error("Error submitting consultation form:", error);
-      alert(
-        "Sorry, there was an error sending your consultation request. Please try again."
-      );
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+     if (response.ok) {
+       const result = await response.json();
+       console.log("SUCCESS:", result);
+
+       // Clear form after successful submit
+       setFormData({
+         firstName: "",
+         lastName: "",
+         email: "",
+         country: "",
+         timezone: userTimezone,
+         specialist: "",
+         date: "",
+         time: "",
+         message: "",
+       });
+
+       alert(
+         "Thank you! Your consultation request has been sent successfully. We'll contact you soon to confirm the meeting."
+       );
+     } else {
+       throw new Error(`Server responded with status: ${response.status}`);
+     }
+   } catch (error) {
+     console.error("Error submitting consultation form:", error);
+     alert(
+       "Sorry, there was an error sending your consultation request. Please try again."
+     );
+   } finally {
+     setIsSubmitting(false);
+   }
+ };
 
   return (
     <>

@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export",
-  // REMOVE basePath and assetPrefix for Netlify
+  // REMOVE output: "export" - this is required for API routes to work
   images: {
     unoptimized: true,
   },

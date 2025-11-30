@@ -1,242 +1,167 @@
-// app/api/consultation/route.js
-import { NextRequest, NextResponse } from "next/server";
-import {
-  UserConfirmationEmail,
-  AdminNotificationEmail,
-} from "@/components/EmailTemplates";
-
-// Helper function to convert time between timezones
-function convertTimezone(time, fromTimezone, toTimezone, date) {
-  try {
-    const [hours, minutes] = time.split(":");
-    const localDate = new Date(date);
-    localDate.setHours(parseInt(hours), parseInt(minutes));
-
-    const convertedTimeString = localDate.toLocaleString("en-US", {
-      timeZone: toTimezone,
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    });
-
-    return convertedTimeString;
-  } catch (error) {
-    console.error("Timezone conversion error:", error);
-    return `${time} (Conversion failed)`;
-  }
-}
+// src/app/api/consultation/route.js
+import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
     const body = await request.json();
     const submissionDate = new Date().toLocaleString();
 
-    // Only use the fields that actually come from the form
-    const userData = {
-      firstName: body.firstName || "Not provided",
-      lastName: body.lastName || "Not provided",
-      email: body.email || "Not provided",
-      country: body.country || "Not provided",
-      timezone: body.timezone || "Not provided",
-      specialist: body.specialist || "Not provided",
-      date: body.date || "Not provided",
-      time: body.time || "Not provided",
-    };
+    console.log("Consultation form received:", body);
 
-    // Convert time to Bangladesh time
-    const bangladeshTime = convertTimezone(
-      userData.time,
-      userData.timezone,
-      "Asia/Dhaka",
-      userData.date
-    );
-
-    // Get API key safely
-    const brevoApiKey = process.env.BREVO_API_KEY;
-    if (!brevoApiKey) {
-      console.error("Brevo API key is missing");
+    // Check if Brevo API key is available
+    if (!process.env.BREVO_API_KEY) {
+      console.error("❌ BREVO_API_KEY is missing");
       return NextResponse.json(
-        { error: "Service configuration error" },
+        { error: "Email service not configured" },
         { status: 500 }
       );
     }
 
-    // 1. Save contact to Brevo with only actual fields
-    const contactResponse = await fetch("https://api.brevo.com/v3/contacts", {
-      method: "POST",
-      headers: {
-        accept: "application/json",
-        "content-type": "application/json",
-        "api-key": brevoApiKey,
-      },
-      body: JSON.stringify({
-        email: userData.email,
-        attributes: {
-          FIRSTNAME: userData.firstName,
-          LASTNAME: userData.lastName,
-          COUNTRY: userData.country,
-          TIMEZONE: userData.timezone,
-          SPECIALIST: userData.specialist,
-          DATE: userData.date,
-          TIME: userData.time,
-          TYPE: "Consultation Request",
-          SUBMISSION_DATE: submissionDate,
-        },
-        updateEnabled: true,
-      }),
-    });
+    let errors = [];
 
-    // In your API route, update the Google Sheets section to this:
+    // 1. ONLY Brevo Email (start simple)
+    try {
+      console.log("📧 Sending email via Brevo...");
 
-    // 2. Save to Google Sheets - CORRECTED structure
-    if (process.env.GOOGLE_SHEET_CONTACT_WEBHOOK) {
-      try {
-        await fetch(process.env.GOOGLE_SHEET_CONTACT_WEBHOOK, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            // These must match EXACTLY what your Google Script expects
-            firstName: userData.firstName,
-            lastName: userData.lastName,
-            email: userData.email,
-            country: userData.country,
-            timezone: userData.timezone, // This was missing!
-            specialist: userData.specialist, // This was missing!
-            preferredDate: userData.date, // This was missing!
-            preferredTime: userData.time, // This was missing!
-            requestType: "Consultation",
-            status: "Pending",
-            message: `Consultation for ${userData.specialist} scheduled on ${userData.date} at ${userData.time} ${userData.timezone}`,
-            termsAccepted: true,
-          }),
-        });
-      } catch (googleError) {
-        console.error("Google Sheets error:", googleError);
-      }
-    }
-
-    // 3. Send detailed notification email to COMPANY
-    await fetch("https://api.brevo.com/v3/smtp/email", {
-      method: "POST",
-      headers: {
-        accept: "application/json",
-        "content-type": "application/json",
-        "api-key": brevoApiKey,
-      },
-      body: JSON.stringify({
+      const emailData = {
         sender: {
           name: "BeesZone Website",
-          email: "motivationlife25@gmail.com",
+          email: "motivationlife25@gmail.com", // Your verified sender
         },
         to: [
           {
-            email: "jibon2230@gmail.com",
+            email: "jibon2230@gmail.com", // Your receiving email
             name: "BeesZone Team",
           },
         ],
-        subject: `New Consultation Request from ${userData.firstName} ${userData.lastName}`,
-        htmlContent: AdminNotificationEmail({
-          firstName: userData.firstName,
-          lastName: userData.lastName,
-          email: userData.email,
-          country: userData.country,
-          message: `
-            <div style="font-family: Arial, sans-serif; line-height: 1.6;">
-              <h3 style="color: #333;">Complete Consultation Request Details</h3>
+        subject: `New Consultation Request from ${body.firstName} ${body.lastName}`,
+        htmlContent: `
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <style>
+              body { font-family: Arial, sans-serif; line-height: 1.6; }
+              .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+              .header { background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+              .section { margin: 15px 0; }
+              table { width: 100%; border-collapse: collapse; }
+              td { padding: 8px; border: 1px solid #ddd; }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <div class="header">
+                <h2>🎯 New Consultation Request</h2>
+                <p>A new consultation request has been submitted through your website.</p>
+              </div>
+
+              <div class="section">
+                <h3>👤 Client Information</h3>
+                <table>
+                  <tr><td style="width: 30%;"><strong>Name:</strong></td><td>${
+                    body.firstName
+                  } ${body.lastName}</td></tr>
+                  <tr><td><strong>Email:</strong></td><td>${
+                    body.email
+                  }</td></tr>
+                  <tr><td><strong>Country:</strong></td><td>${
+                    body.country
+                  }</td></tr>
+                  <tr><td><strong>Timezone:</strong></td><td>${
+                    body.timezone
+                  }</td></tr>
+                </table>
+              </div>
+
+              <div class="section">
+                <h3>📅 Consultation Details</h3>
+                <table>
+                  <tr><td style="width: 30%;"><strong>Service Needed:</strong></td><td>${
+                    body.specialist
+                  }</td></tr>
+                  <tr><td><strong>Preferred Date:</strong></td><td>${
+                    body.date
+                  }</td></tr>
+                  <tr><td><strong>Preferred Time:</strong></td><td>${
+                    body.time
+                  }</td></tr>
+                </table>
+              </div>
+
+              ${
+                body.message
+                  ? `
+              <div class="section">
+                <h3>💬 Project Details</h3>
+                <p>${body.message.replace(/\n/g, "<br>")}</p>
+              </div>
+              `
+                  : ""
+              }
+
+              <p><strong>📋 Submitted:</strong> ${submissionDate}</p>
               
-              <h4 style="color: #555; margin-top: 20px;">Personal Information:</h4>
-              <table style="width: 100%; border-collapse: collapse;">
-                <tr><td style="padding: 8px; border: 1px solid #ddd; width: 30%;"><strong>Name:</strong></td><td style="padding: 8px; border: 1px solid #ddd;">${userData.firstName} ${userData.lastName}</td></tr>
-                <tr><td style="padding: 8px; border: 1px solid #ddd;"><strong>Email:</strong></td><td style="padding: 8px; border: 1px solid #ddd;">${userData.email}</td></tr>
-                <tr><td style="padding: 8px; border: 1px solid #ddd;"><strong>Country:</strong></td><td style="padding: 8px; border: 1px solid #ddd;">${userData.country}</td></tr>
-                <tr><td style="padding: 8px; border: 1px solid #ddd;"><strong>Timezone:</strong></td><td style="padding: 8px; border: 1px solid #ddd;">${userData.timezone}</td></tr>
-              </table>
-
-              <h4 style="color: #555; margin-top: 20px;">Consultation Details:</h4>
-              <table style="width: 100%; border-collapse: collapse;">
-                <tr><td style="padding: 8px; border: 1px solid #ddd; width: 30%;"><strong>Service Needed:</strong></td><td style="padding: 8px; border: 1px solid #ddd;">${userData.specialist}</td></tr>
-                <tr><td style="padding: 8px; border: 1px solid #ddd;"><strong>Preferred Date:</strong></td><td style="padding: 8px; border: 1px solid #ddd;">${userData.date}</td></tr>
-                <tr><td style="padding: 8px; border: 1px solid #ddd;"><strong>Preferred Time (Client):</strong></td><td style="padding: 8px; border: 1px solid #ddd;">${userData.time} (${userData.timezone})</td></tr>
-                <tr><td style="padding: 8px; border: 1px solid #ddd;"><strong>Converted Time (Bangladesh):</strong></td><td style="padding: 8px; border: 1px solid #ddd;">${bangladeshTime}</td></tr>
-              </table>
-
-              <p style="margin-top: 20px; color: #666;">
-                <strong>Submitted:</strong> ${submissionDate}
-              </p>
+              <div style="background: #e7f3ff; padding: 15px; border-radius: 5px; margin-top: 20px;">
+                <strong>🚀 Action Required:</strong> Please contact the client to confirm the consultation.
+              </div>
             </div>
-          `,
-          submissionDate: submissionDate,
-        }),
-      }),
-    });
+          </body>
+          </html>
+        `,
+      };
 
-    // 4. Send confirmation email to USER
-    await fetch("https://api.brevo.com/v3/smtp/email", {
-      method: "POST",
-      headers: {
-        accept: "application/json",
-        "content-type": "application/json",
-        "api-key": brevoApiKey,
-      },
-      body: JSON.stringify({
-        sender: {
-          name: "BeesZone Team",
-          email: "motivationlife25@gmail.com",
+      const emailResponse = await fetch("https://api.brevo.com/v3/smtp/email", {
+        method: "POST",
+        headers: {
+          accept: "application/json",
+          "content-type": "application/json",
+          "api-key": process.env.BREVO_API_KEY,
         },
-        to: [
-          {
-            email: userData.email,
-            name: `${userData.firstName} ${userData.lastName}`,
-          },
-        ],
-        subject: "Thank you for your consultation request!",
-        htmlContent: UserConfirmationEmail({
-          firstName: userData.firstName,
-          lastName: userData.lastName,
-          email: userData.email,
-          country: userData.country,
-          message: `
-            <div style="font-family: Arial, sans-serif; line-height: 1.6;">
-              <h3 style="color: #333;">Your Consultation Request Confirmation</h3>
-              
-              <h4 style="color: #555; margin-top: 20px;">Your Details:</h4>
-              <p><strong>Name:</strong> ${userData.firstName} ${userData.lastName}</p>
-              <p><strong>Email:</strong> ${userData.email}</p>
-              <p><strong>Country:</strong> ${userData.country}</p>
-              <p><strong>Your Timezone:</strong> ${userData.timezone}</p>
+        body: JSON.stringify(emailData),
+      });
 
-              <h4 style="color: #555; margin-top: 20px;">Consultation Details:</h4>
-              <p><strong>Service:</strong> ${userData.specialist}</p>
-              <p><strong>Preferred Date:</strong> ${userData.date}</p>
-              <p><strong>Preferred Time:</strong> ${userData.time} (Your Local Time)</p>
-              <p><strong>Bangladesh Time:</strong> ${bangladeshTime}</p>
+      console.log("Brevo response status:", emailResponse.status);
 
-              <p style="margin-top: 20px; background: #f0f8ff; padding: 15px; border-radius: 5px;">
-                <strong>Next Steps:</strong> We'll contact you soon to confirm the meeting time according to your timezone and discuss your requirements in detail.
-              </p>
+      if (!emailResponse.ok) {
+        const errorText = await emailResponse.text();
+        console.error("❌ Brevo API error:", emailResponse.status, errorText);
+        throw new Error(`Brevo API error: ${emailResponse.status}`);
+      }
 
-              <p style="color: #666; margin-top: 20px;">
-                <strong>Request Submitted:</strong> ${submissionDate}
-              </p>
-            </div>
-          `,
-          submissionDate: submissionDate,
-        }),
-      }),
+      console.log("✅ Email sent successfully via Brevo");
+    } catch (error) {
+      console.error("❌ Email error:", error);
+      errors.push("Failed to send notification email");
+    }
+
+    if (errors.length > 0) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Form submitted but email failed",
+          errors: errors,
+        },
+        { status: 207 }
+      ); // 207 = Multi-status
+    }
+
+    return NextResponse.json({
+      success: true,
+      message:
+        "Consultation submitted successfully! We've sent you an email notification.",
     });
-
-    return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Consultation API error:", error);
+    console.error("❌ Consultation API error:", error);
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Failed to process consultation request" },
       { status: 500 }
     );
   }
+}
+
+export async function GET() {
+  return NextResponse.json({
+    message: "Consultation API with Brevo email is working!",
+    timestamp: new Date().toISOString(),
+  });
 }
