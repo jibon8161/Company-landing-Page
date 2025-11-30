@@ -1,10 +1,11 @@
 // app/api/contact/route.js
+export const runtime = "nodejs";
 import { NextRequest, NextResponse } from "next/server";
 import {
   UserConfirmationEmail,
   AdminNotificationEmail,
 } from "@/components/EmailTemplates";
-export const runtime = "nodejs";
+
 
 export async function POST(request: NextRequest) {
   try {
