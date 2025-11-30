@@ -1,10 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // REMOVE output: "export" - this is required for API routes to work
   images: {
     unoptimized: true,
   },
-  trailingSlash: true,
+  // trailingSlash: true, // COMMENT OUT OR REMOVE THIS LINE
 };
 
 export default nextConfig;
