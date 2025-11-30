@@ -1,5 +1,6 @@
-// app/api/contact/route.js
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 import { NextRequest, NextResponse } from "next/server";
 import {
   UserConfirmationEmail,
@@ -11,13 +12,15 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const submissionDate = new Date().toLocaleString();
 
-    // 1. Save contact to Brevo
-    const contactResponse = await fetch("https://api.brevo.com/v3/contacts", {
+    /** --------------------------------------------
+     * 1. ADD CONTACT TO BREVO
+     -------------------------------------------- */
+    await fetch("https://api.brevo.com/v3/contacts", {
       method: "POST",
       headers: {
         accept: "application/json",
         "content-type": "application/json",
-        "api-key": process.env.BREVO_API_KEY!,
+        "api-key": process.env.BREVO_API_KEY ?? "",
       },
       body: JSON.stringify({
         email: body.email,
@@ -31,73 +34,68 @@ export async function POST(request: NextRequest) {
       }),
     });
 
-    // 2. Save to Google Sheets (ADD THIS PART)
+    /** --------------------------------------------
+     * 2. GOOGLE SHEET WEBHOOK
+     -------------------------------------------- */
     if (process.env.GOOGLE_SHEET_CONTACT_WEBHOOK) {
       try {
-        const googleSheetResponse = await fetch(
-          process.env.GOOGLE_SHEET_CONTACT_WEBHOOK,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              firstName: body.firstName,
-              lastName: body.lastName,
-              email: body.email,
-              country: body.country,
-              message: body.message,
-              termsAccepted: body.termsAccepted,
-            }),
-          }
-        );
-
-        const googleSheetResult = await googleSheetResponse.json();
-        console.log("Google Sheets result:", googleSheetResult);
-      } catch (googleError) {
-        console.error("Google Sheets error:", googleError);
-        // Don't fail the entire request if Google Sheets fails
+        await fetch(process.env.GOOGLE_SHEET_CONTACT_WEBHOOK, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstName: body.firstName,
+            lastName: body.lastName,
+            email: body.email,
+            country: body.country,
+            message: body.message,
+            termsAccepted: body.termsAccepted,
+          }),
+        });
+      } catch (err) {
+        console.error("Google Sheets Error →", err);
       }
     }
 
-    // 3. Send notification email to COMPANY
+    /** --------------------------------------------
+     * 3. EMAIL TO COMPANY
+     -------------------------------------------- */
     await fetch("https://api.brevo.com/v3/smtp/email", {
       method: "POST",
       headers: {
         accept: "application/json",
         "content-type": "application/json",
-        "api-key": process.env.BREVO_API_KEY!,
+        "api-key": process.env.BREVO_API_KEY ?? "",
       },
       body: JSON.stringify({
         sender: {
           name: "BeesZone Website",
-          email: "mno-reply@brevo.com",
+          email: "mno-reply@brevo.com", // MUST BE VERIFIED!
         },
         to: [
           {
-            email: "mno-reply@brevo.com", // COMPANY EMAIL
+            email: "jibon2230@gmail.com",
             name: "BeesZone Team",
           },
         ],
-        subject: `New Contact Form Submission from ${body.firstName} ${body.lastName}`,
+        subject: `New Contact Form Submission`,
         htmlContent: AdminNotificationEmail({
-          firstName: body.firstName,
-          lastName: body.lastName,
-          email: body.email,
-          country: body.country,
-          message: body.message,
-          submissionDate: submissionDate,
+          ...body,
+          submissionDate,
         }),
       }),
     });
 
-    // 4. Send confirmation email to USER
+    /** --------------------------------------------
+     * 4. EMAIL TO USER
+     -------------------------------------------- */
     await fetch("https://api.brevo.com/v3/smtp/email", {
       method: "POST",
       headers: {
         accept: "application/json",
         "content-type": "application/json",
-        "api-key": process.env.BREVO_API_KEY!,
+        "api-key": process.env.BREVO_API_KEY ?? "",
       },
       body: JSON.stringify({
         sender: {
@@ -112,12 +110,8 @@ export async function POST(request: NextRequest) {
         ],
         subject: "Thank you for contacting BeesZone!",
         htmlContent: UserConfirmationEmail({
-          firstName: body.firstName,
-          lastName: body.lastName,
-          email: body.email,
-          country: body.country,
-          message: body.message,
-          submissionDate: submissionDate,
+          ...body,
+          submissionDate,
         }),
       }),
     });
@@ -125,9 +119,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Contact API error:", error);
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
