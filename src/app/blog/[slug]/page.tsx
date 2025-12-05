@@ -220,7 +220,7 @@ const BlogPage = async ({ params }: Props) => {
                   prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:p-6 prose-pre:rounded-xl
                   prose-img:rounded-lg prose-img:shadow-md
                   prose-table:min-w-full prose-table:divide-y prose-table:divide-gray-200
-                  prose-th:px-6 prose-th:py-3 prose-th:text-left prose-th:text-sm prose-th:font-semibold prose-th:text-gray-900
+                  prose-th:px-6 prose-th:py-3 prose-th:text-left prose-th:text-sm prose-th:font-semibold prose-th:text-gray-800
                   prose-td:px-6 prose-td:py-4 prose-td:text-sm prose-td:text-gray-800"
                 >
                   <div dangerouslySetInnerHTML={{ __html: blog.content }} />
