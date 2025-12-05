@@ -1,12 +1,15 @@
-// /types/blog.ts
+// types/blog.ts
 export interface Blog {
-  _id: string; // converted from MongoDB ObjectId
-  title: string;
+  _id: string;
   slug: string;
-  excerpt: string;
-  coverImage: string;
-  date: string;
+  title: string;
+  excerpt: string; // This exists in your API
   content: string;
+  coverImage?: string;
   author?: string;
-  authorImage?: string;
+  authorImage?: string; // Add this
+  date: string;
+  // These are optional since they don't exist in your API
+  category?: string;
+  tags?: string[];
 }
