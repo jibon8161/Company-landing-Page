@@ -99,15 +99,15 @@ const BlogPage = async ({ params }: Props) => {
         <BlogNavbar />
 
         {/* Back Button */}
-        {/* <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24">
           <Link
             href="/blog"
             className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300 transition-colors mb-6 group"
           >
             <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            <span className="text-sm font-medium">Back to all articles</span>
+            <span className="text-sm font-medium text-blue-500">Back to all articles</span>
           </Link>
-        </div> */}
+        </div>
 
         {/* Hero Section - Full Width */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -122,12 +122,12 @@ const BlogPage = async ({ params }: Props) => {
             )}
 
             {/* Main Title */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-gray-900 dark:text-gray-100 mb-8 leading-tight tracking-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-gray-900 dark:text-[#ffffff] mb-8 leading-tight tracking-tight ">
               {blog.title}
             </h1>
 
             {/* Minimal Meta Info */}
-            <div className="flex flex-wrap items-center gap-4 text-gray-600 dark:text-gray-400 mb-12 pb-8 border-b border-gray-200 dark:border-gray-800">
+            <div className="flex flex-wrap items-center gap-4 text-gray-600 dark:text-white mb-12 pb-8 border-b border-gray-200 dark:border-gray-800">
               <div className="flex items-center gap-2">
                 <User className="w-4 h-4" />
                 <span className="text-sm">
@@ -203,7 +203,7 @@ const BlogPage = async ({ params }: Props) => {
               {/* Featured Image - Full Width */}
               {blog.coverImage && (
                 <div className="mb-10 -mx-4 sm:mx-0">
-                  <div className="relative aspect-[21/9] w-full overflow-hidden">
+                  <div className="relative aspect-21/9 w-full overflow-hidden">
                     <Image
                       src={blog.coverImage}
                       alt={blog.title}
@@ -212,7 +212,7 @@ const BlogPage = async ({ params }: Props) => {
                       priority
                       sizes="100vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/10 to-transparent" />
                   </div>
                 </div>
               )}

@@ -108,11 +108,11 @@ export default function BlogNavbar() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <Link
-            href="/blog"
+            href="/"
             className="inline-flex items-center gap-2 px-4 py-2 text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-2xl group"
           >
             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-            <span className="font-medium">All Posts</span>
+            <span className="font-medium">Home</span>
           </Link>
 
           <div className="flex items-center gap-4">
