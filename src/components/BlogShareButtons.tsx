@@ -34,7 +34,7 @@ export default function BlogShareButtons({ title, slug }: Props) {
   // Don't render links on server to avoid hydration mismatch
   if (!isClient) {
     return (
-      <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+      <div className="bg-white/60 rounded-xl p-6 shadow-sm border border-gray-100">
         <h3 className="font-bold text-gray-900 mb-4">Share this post</h3>
         <div className="flex flex-wrap gap-3">
           <div className="flex-1 min-w-[120px] flex items-center justify-center gap-2 bg-blue-50 text-blue-700 px-4 py-3 rounded-lg">
@@ -55,7 +55,7 @@ export default function BlogShareButtons({ title, slug }: Props) {
   }
 
   return (
-    <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+    <div className="bg-white/60 rounded-xl p-6 shadow-sm border border-gray-100">
       <h3 className="font-bold text-gray-900 mb-4">Share this post</h3>
       <div className="flex flex-wrap gap-3">
         <a

@@ -151,9 +151,10 @@ const Header: React.FC = () => {
 
   return (
     <header
+      // Standard Tailwind CSS (correct)
       className={`fixed h-24 top-0 py-1 z-50 w-full dark:bg-transparent transition-all ${
         sticky
-          ? "shadow-lg bg-[#8BB398] dark:shadow-dark-md dark:bg-[#596E3B]!  "
+          ? "shadow-lg bg-linear-to-r from-[#8BB398] to-white dark:shadow-dark-md dark:bg-linear-to-r dark:from-black dark:to-[#596E3B]"
           : "shadow-none"
       }`}
     >

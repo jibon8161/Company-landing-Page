@@ -3,13 +3,33 @@ export interface Blog {
   _id: string;
   slug: string;
   title: string;
-  excerpt: string; // This exists in your API
+  excerpt: string;
   content: string;
+  date: string;
+
+  // Optional fields
   coverImage?: string;
   author?: string;
-  authorImage?: string; // Add this
+  authorImage?: string;
+  category?: string;
+  tags?: string[];
+
+  // Stats fields (with defaults)
+  likes: number;
+  views: number;
+  likedBy?: string[];
+}
+
+// You might also want a create/update type
+export interface BlogInput {
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
   date: string;
-  // These are optional since they don't exist in your API
+  coverImage?: string;
+  author?: string;
+  authorImage?: string;
   category?: string;
   tags?: string[];
 }

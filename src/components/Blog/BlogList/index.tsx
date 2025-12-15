@@ -18,7 +18,7 @@ const BlogList = async () => {
 
   return (
     <section
-      className="flex flex-wrap justify-center pt-8 md:pb-24 pb-16 dark:bg-darkmode"
+      className="flex flex-wrap justify-center pt-8 md:pb-24 pb-16 dark:bg-transparent"
       id="blog"
     >
       <div className="container mx-auto max-w-6xl">

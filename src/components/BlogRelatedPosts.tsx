@@ -55,7 +55,7 @@ export default async function BlogRelatedPosts({
   if (relatedPosts.length === 0) return null;
 
   return (
-    <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-gray-200">
+    <div className="bg-white/60 backdrop-blur-sm rounded-xl p-6 shadow-sm border border-gray-200">
       <h3 className="font-bold text-gray-900 mb-6">Related Posts</h3>
       <div className="space-y-6">
         {relatedPosts.map((post) => (

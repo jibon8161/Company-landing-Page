@@ -11,7 +11,7 @@ export default function BlogAuthorCard({ author, authorImage }: Props) {
   if (!author) return null;
 
   return (
-    <div className="bg-gradient-to-r from-gray-50 to-white rounded-2xl p-8 border border-gray-200 shadow-sm">
+    <div className="bg-white/60 rounded-2xl p-8 border border-gray-200 shadow-sm">
       <div className=" gap-4 mb-4">
         {authorImage ? (
           <div className="relative w-16 h-16 rounded-full overflow-hidden">
@@ -24,7 +24,7 @@ export default function BlogAuthorCard({ author, authorImage }: Props) {
             /> */}
           </div>
         ) : (
-          <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
+          <div className="w-16 h-16  rounded-full flex items-center justify-center text-white font-bold text-xl">
             {author.charAt(0).toUpperCase()}
           </div>
         )}

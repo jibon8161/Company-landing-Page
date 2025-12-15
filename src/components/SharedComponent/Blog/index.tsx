@@ -167,9 +167,13 @@ const BlogSection = () => {
   }
 
   return (
-    <section className="relative py-24 overflow-hidden" id="blog">
+    <section
+      className="relative py-24 overflow-hidden"
+      id="blog"
+      style={{ background: "transparent" }}
+    >
       {/* Soft Background Accents */}
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-0  from-primary/5 via-transparent to-transparent pointer-events-none" />
       <div className="absolute top-20 left-10 w-[28rem] h-[28rem] bg-primary/20 rounded-full blur-[120px] -z-10" />
       <div className="absolute bottom-20 right-10 w-[28rem] h-[28rem] bg-blue-600/20 rounded-full blur-[120px] -z-10" />
 
