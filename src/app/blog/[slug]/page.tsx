@@ -32,7 +32,8 @@ import NewsletterSubscribe from "@/components/Blog/NewsletterSubscribe";
 import BlogComments from "@/components/Blog/BlogComments";
 
 
-export const dynamic = "force-dynamic";
+
+
 
 type Props = { params: Promise<{ slug: string }> };
 
