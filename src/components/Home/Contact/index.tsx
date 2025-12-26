@@ -276,7 +276,7 @@ const Contactform = () => {
 
                 <div className="w-full">
                   <button
-                    className="w-full bg-[#FFFFFF] text-[#235146] hover:bg-gray-100 font-semibold py-3 rounded-lg transition-colors duration-300 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full bg-[#FFD230] text-[#235146] hover:bg-gray-100 font-semibold py-3 rounded-lg transition-colors duration-300 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                     type="submit"
                     disabled={isSubmitting}
                   >

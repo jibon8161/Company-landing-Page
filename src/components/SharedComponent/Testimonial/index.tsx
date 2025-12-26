@@ -55,7 +55,7 @@ const Testimonial = () => {
   ];
 
   const CreateCard: React.FC<CreateCardProps> = ({ card }) => (
-    <div className="p-4 rounded-lg mx-2 sm:mx-3 md:mx-4 shadow-xl hover:shadow-lg transition-all duration-200 w-[280px] sm:w-64 md:w-72 shrink-0 bg-white dark:bg-darklight shadow-[#87ceeb]">
+    <div className="p-4 rounded-lg mx-2 sm:mx-3 md:mx-4 shadow-xl hover:shadow-lg transition-all duration-200 w-[280px] sm:w-64 md:w-72 shrink-0 bg-white dark:bg-darklight shadow-[#FFD230]">
       <div className="flex gap-2">
         <img
           className="size-10 sm:size-11 rounded-full"
@@ -184,7 +184,7 @@ const Testimonial = () => {
 
         {/* First Marquee Row */}
         <div className="container mx-auto marquee-row overflow-hidden relative">
-          <div className="absolute left-0 top-0 h-full w-8 sm:w-12 md:w-20 z-10 pointer-events-none bg-gradient-to-r from-transparent dark:from-transparent"></div>
+          <div className="absolute left-0 top-0 h-full w-8 sm:w-12 md:w-20 z-10 pointer-events-none bg-linear-to-r from-transparent dark:from-transparent"></div>
           <div className="marquee-inner flex transform-gpu min-w-[300%] sm:min-w-[250%] md:min-w-[200%] py-6 sm:py-8 md:py-10">
             {[...cardsData, ...cardsData].map((card, index) => (
               <div
@@ -200,16 +200,16 @@ const Testimonial = () => {
                 </div>
 
                 {/* Moving Shine Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 animate-shine rounded-xl md:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 animate-shine rounded-xl md:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
             ))}
           </div>
-          <div className="absolute right-0 top-0 h-full w-8 sm:w-12 md:w-20 z-10 pointer-events-none bg-gradient-to-l "></div>
+          <div className="absolute right-0 top-0 h-full w-8 sm:w-12 md:w-20 z-10 pointer-events-none bg-linear-to-l "></div>
         </div>
 
         {/* Second Marquee Row (Reverse) */}
         <div className="marquee-row container mx-auto overflow-hidden relative mt-4 sm:mt-6">
-          <div className="absolute left-0 top-0 h-full w-8 sm:w-12 md:w-20 z-10 pointer-events-none bg-gradient-to-r "></div>
+          <div className="absolute left-0 top-0 h-full w-8 sm:w-12 md:w-20 z-10 pointer-events-none bg-linear-to-r "></div>
           <div className="marquee-inner marquee-reverse flex transform-gpu min-w-[300%] sm:min-w-[250%] md:min-w-[200%] py-6 sm:py-8 md:py-10">
             {[...cardsData, ...cardsData].map((card, index) => (
               <div
@@ -225,11 +225,11 @@ const Testimonial = () => {
                 </div>
 
                 {/* Moving Shine Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 animate-shine rounded-xl md:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 animate-shine rounded-xl md:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
             ))}
           </div>
-          <div className="absolute right-0 top-0 h-full w-8 sm:w-12 md:w-20 z-10 pointer-events-none bg-gradient-to-l "></div>
+          <div className="absolute right-0 top-0 h-full w-8 sm:w-12 md:w-20 z-10 pointer-events-none bg-linear-to-l "></div>
         </div>
       </div>
     </section>

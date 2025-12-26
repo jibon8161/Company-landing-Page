@@ -94,18 +94,20 @@ const BlogPage = async ({ params }: Props) => {
     const readingTime = Math.ceil(wordCount / 200);
 
     return (
-      <div className=" min-h-screen bg-linear-to-b from-gray-50/50 via-white to-blue-50/20 dark: dark:via-gray-900 dark:">
+      <div className=" min-h-screen bg-linear-to-b from-gray-50/50 via-white to-black-50/20 dark: dark:via-gray-900 dark:">
         {/* Clean Navigation */}
         <BlogNavbar />
 
         {/* Back Button */}
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 ">
           <Link
             href="/blog"
             className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300 transition-colors mb-6 group"
           >
-            <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-            <span className="text-sm font-medium text-blue-500">Back to all articles</span>
+            <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform bg-[#FFD230]" />
+            <span className="  text-sm font-medium text-black dark:text-[#ffffff] rounded-4xl p-2 ">
+              Back to all articles
+            </span>
           </Link>
         </div>
 

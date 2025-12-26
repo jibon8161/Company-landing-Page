@@ -54,7 +54,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         <div className="mb-12">
           <Link
             href="/services"
-            className="inline-flex items-center gap-3 text-primary hover:text-blue-700 font-semibold group bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm px-6 py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200/50 dark:border-gray-700/50"
+            className="inline-flex items-center gap-3 dark:text-[#FFD230] text-black hover:text-blue-700 font-semibold group bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm px-6 py-3 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200/50 dark:border-gray-700/50"
           >
             <Icon
               icon="ei:chevron-left"
@@ -188,8 +188,8 @@ const ServiceCard = ({
         {/* CTA Button */}
         <div className="text-center mt-auto">
           <Link
-            href="#"
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-primary to-blue-600 text-white px-8 py-4 rounded-2xl font-semibold group/btn hover:shadow-2xl hover:scale-105 transition-all duration-300 shadow-lg w-full justify-center"
+            href="/contact"
+            className="inline-flex items-center gap-3 bg-[#FFD230] text-black px-8 py-4 rounded-2xl font-semibold group/btn hover:shadow-2xl hover:scale-105 transition-all duration-300 shadow-lg w-full justify-center"
           >
             <span>Get Started</span>
             <Icon

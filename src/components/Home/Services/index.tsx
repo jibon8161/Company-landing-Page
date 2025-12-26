@@ -108,7 +108,7 @@ const ServiceCard = ({
       }`}
     >
       {/* Dark Green Background */}
-      <div className="absolute inset-0 bg-[#052624]  rounded-2xl z-10"></div>
+      <div className="absolute inset-0 bg-[#2d9790]  rounded-2xl z-10"></div>
 
       {/* Shine Effect */}
       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 animate-shine rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"></div>
@@ -196,7 +196,7 @@ const ServiceCard = ({
         <div className="text-center mt-auto">
           <Link
             href={`/services/${category.slug}`}
-            className={`inline-flex items-center gap-2 bg-[#81A78E] text-white font-semibold group/btn hover:shadow-lg hover:scale-105 transition-all duration-300 shadow-md text-sm ${
+            className={`inline-flex items-center gap-2 bg-[#FFD230] text-black font-semibold group/btn hover:shadow-lg hover:scale-105 transition-all duration-300 shadow-md text-sm ${
               featured ? "px-8 py-3 rounded-xl" : "px-6 py-3 rounded-lg"
             }`}
           >

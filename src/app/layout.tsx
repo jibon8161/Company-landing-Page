@@ -6,7 +6,8 @@ import { ThemeProvider } from "next-themes";
 import ScrollToTop from "@/components/ScrollToTop";
 import Aoscompo from "@/utils/aos";
 import NextTopLoader from "nextjs-toploader";
-import VantaClouds from "@/components/VantaTopology"; // Changed to Clouds
+import VantaClouds from "@/components/VantaTopology";
+import KillSwitchClientCheck from "@/components/KillSwitchClientCheck"; // Add this import
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +27,9 @@ export default function RootLayout({
         >
           {/* Vanta Clouds Background */}
           <VantaClouds />
+
+          {/* Kill Switch Client Check - Add this line */}
+          <KillSwitchClientCheck />
 
           <Aoscompo>
             <div className="relative z-10">

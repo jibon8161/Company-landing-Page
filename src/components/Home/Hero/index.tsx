@@ -24,13 +24,13 @@ const Hero = () => {
           {/* Badge */}
           <div className="flex gap-2 items-center">
             <span className="w-3 h-3 rounded-full bg-gradient-to-r from-primary to-blue-600"></span>
-            <span className="font-medium text-midnight_text text-sm dark:text-white/50 tracking-wider uppercase">
+            <span className="font-medium text-midnight_text text-sm dark:text-[#FFD230] tracking-wider uppercase">
               From Concept to Completion
             </span>
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-midnight font-bold dark:text-white text-4xl md:text-5xl md:leading-[1.15] bg-gradient-to-r from-midnight_text to-primary dark:from-white dark:to-primary bg-clip-text text-transparent">
+          <h1 className="text-midnight font-bold dark:text-white text-4xl md:text-5xl md:leading-[1.15] bg-linear-to-r from-midnight_text to-primary dark:from-white dark:to-primary bg-clip-text text-transparent">
             The Silent Partner in Your{" "}
             <span className="bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
               Success.

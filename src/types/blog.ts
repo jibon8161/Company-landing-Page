@@ -18,6 +18,7 @@ export interface Blog {
   likes: number;
   views: number;
   likedBy?: string[];
+  star?: string; // "yes" or "no"
 }
 
 // You might also want a create/update type
@@ -32,4 +33,5 @@ export interface BlogInput {
   authorImage?: string;
   category?: string;
   tags?: string[];
+  star?: string;
 }
