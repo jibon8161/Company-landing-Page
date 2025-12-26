@@ -320,5 +320,5 @@ const BlogPage = async ({ params }: Props) => {
 };
 
 
-
+export const dynamic = "force-dynamic";
 export default BlogPage;
