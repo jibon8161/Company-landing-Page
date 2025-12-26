@@ -1,4 +1,4 @@
-
+"use client";
 
 import BlogCard from "@/components/SharedComponent/Blog/blogCard";
 import { Blog } from "@/types/blog";
