@@ -2,6 +2,8 @@
 import { Blog } from "@/types/blog";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+// Add this import at the top with your other imports
+import { Suspense } from "react";
 import {
   CalendarDays,
   User,
@@ -296,12 +298,20 @@ const BlogPage = async ({ params }: Props) => {
                       Read Next
                     </h3>
                   </div>
-                  <BlogRelatedPosts
-                    currentSlug={slug}
-                    category={
-                      blog.category || blog.title.split(":")[0].trim() || ""
+                  <Suspense
+                    fallback={
+                      <div className="text-sm text-gray-500 py-4">
+                        Loading related posts...
+                      </div>
                     }
-                  />
+                  >
+                    <BlogRelatedPosts
+                      currentSlug={slug}
+                      category={
+                        blog.category || blog.title.split(":")[0].trim() || ""
+                      }
+                    />
+                  </Suspense>
                 </div>
               </div>
               <BlogComments />
