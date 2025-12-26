@@ -39,7 +39,7 @@ export default function BlogPage() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <Suspense
           fallback={
-            <div className="min-h-[60vh] flex flex-col items-center justify-center">
+            <div className="min-h-[60vh] flex flex-col items-center justify-center ">
               <div className="relative">
                 <div className="h-32 w-32 rounded-full border-4 border-blue-200 dark:border-blue-900/30"></div>
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
