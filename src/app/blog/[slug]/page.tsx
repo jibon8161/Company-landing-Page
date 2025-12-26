@@ -33,7 +33,7 @@ async function getAllSlugs(): Promise<string[]> {
 
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/blogs`, {
-      next: { revalidate: 3600 },
+     
     });
 
     if (!res.ok) return [];
