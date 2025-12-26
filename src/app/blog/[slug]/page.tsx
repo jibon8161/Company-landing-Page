@@ -4,6 +4,9 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 // Add this import at the top with your other imports
 import { Suspense } from "react";
+
+
+
 import {
   CalendarDays,
   User,
@@ -27,6 +30,9 @@ import BlogActionButtons from "@/components/Blog/BlogActionButtons";
 import BackToTopButton from "@/components/Blog/BackToTopButton";
 import NewsletterSubscribe from "@/components/Blog/NewsletterSubscribe";
 import BlogComments from "@/components/Blog/BlogComments";
+
+
+export const dynamic = "force-dynamic";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -330,5 +336,5 @@ const BlogPage = async ({ params }: Props) => {
 };
 
 
-export const dynamic = "force-dynamic";
+
 export default BlogPage;
