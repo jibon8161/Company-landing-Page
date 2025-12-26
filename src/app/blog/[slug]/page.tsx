@@ -2,11 +2,6 @@
 import { Blog } from "@/types/blog";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-// Add this import at the top with your other imports
-import { Suspense } from "react";
-
-
-
 import {
   CalendarDays,
   User,
@@ -30,10 +25,6 @@ import BlogActionButtons from "@/components/Blog/BlogActionButtons";
 import BackToTopButton from "@/components/Blog/BackToTopButton";
 import NewsletterSubscribe from "@/components/Blog/NewsletterSubscribe";
 import BlogComments from "@/components/Blog/BlogComments";
-
-
-
-
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -103,7 +94,7 @@ const BlogPage = async ({ params }: Props) => {
     const readingTime = Math.ceil(wordCount / 200);
 
     return (
-      <div className=" min-h-screen bg-linear-to-b from-gray-50/50 via-white to-black-50/20 dark: dark:via-gray-900 dark:">
+      <div className=" min-h-screen bg-linear-to-b from-gray-50/50 via-white to-blue-50/20 dark: dark:via-gray-900 dark:">
         {/* Clean Navigation */}
         <BlogNavbar />
 
@@ -305,20 +296,12 @@ const BlogPage = async ({ params }: Props) => {
                       Read Next
                     </h3>
                   </div>
-                  <Suspense
-                    fallback={
-                      <div className="text-sm text-gray-500 py-4">
-                        Loading related posts....
-                      </div>
+                  <BlogRelatedPosts
+                    currentSlug={slug}
+                    category={
+                      blog.category || blog.title.split(":")[0].trim() || ""
                     }
-                  >
-                    <BlogRelatedPosts
-                      currentSlug={slug}
-                      category={
-                        blog.category || blog.title.split(":")[0].trim() || ""
-                      }
-                    />
-                  </Suspense>
+                  />
                 </div>
               </div>
               <BlogComments />
