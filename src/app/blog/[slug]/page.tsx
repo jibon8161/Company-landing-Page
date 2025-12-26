@@ -301,7 +301,7 @@ const BlogPage = async ({ params }: Props) => {
                   <Suspense
                     fallback={
                       <div className="text-sm text-gray-500 py-4">
-                        Loading related posts...
+                        Loading related posts....
                       </div>
                     }
                   >
