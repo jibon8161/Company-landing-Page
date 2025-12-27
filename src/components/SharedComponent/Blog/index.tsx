@@ -113,19 +113,19 @@ const BlogSection = () => {
       <section className="relative py-24 overflow-hidden" id="blog">
         {/* Background elements (same as original) */}
         <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent pointer-events-none" />
-        <div className="absolute top-20 left-10 w-[28rem] h-[28rem] bg-primary/20 rounded-full blur-[120px] -z-10" />
-        <div className="absolute bottom-20 right-10 w-[28rem] h-[28rem] bg-blue-600/20 rounded-full blur-[120px] -z-10" />
+        <div className="absolute top-20 left-10 w-[28rem] h-29 bg-primary/20 rounded-full blur-[120px] -z-10" />
+        <div className="absolute bottom-20 right-10 w-[28rem] h-29 bg-blue-600/20 rounded-full blur-[120px] -z-10" />
 
         <div className="container mx-auto max-w-7xl px-6">
           {/* Ghost Loading Header */}
           <div className="text-center mb-20">
-            <div className="inline-block px-6 py-2 mb-4 bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 animate-pulse rounded-full border border-gray-300/20 dark:border-gray-700/20">
+            <div className="inline-block px-6 py-2 mb-4 bg-linear-to-r from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 animate-pulse rounded-full border border-gray-300/20 dark:border-gray-700/20">
               <div className="h-4 w-24 bg-gray-300 dark:bg-gray-600 rounded-full"></div>
             </div>
 
-            <div className="h-16 md:h-20 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 animate-pulse rounded-2xl max-w-2xl mx-auto mb-4"></div>
+            <div className="h-16 md:h-20 bg-linear-to-r from-gray-200 via-gray-300 to-gray-200 dark:from-gray-800 dark:via-gray-700 dark:to-gray-800 animate-pulse rounded-2xl max-w-2xl mx-auto mb-4"></div>
 
-            <div className="h-6 bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 animate-pulse rounded-xl max-w-3xl mx-auto mt-6"></div>
+            <div className="h-6 bg-linear-to-r from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 animate-pulse rounded-xl max-w-3xl mx-auto mt-6"></div>
           </div>
 
           {/* Ghost Loading Cards */}
@@ -138,7 +138,7 @@ const BlogSection = () => {
           {/* Ghost Loading Button */}
           <div className="text-center mt-20">
             <div className="inline-flex items-center gap-3 px-12 py-5 animate-pulse">
-              <div className="h-7 w-32 bg-gradient-to-r from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-full"></div>
+              <div className="h-7 w-32 bg-linear-to-r from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 rounded-full"></div>
               <div className="w-6 h-6 bg-gray-300 dark:bg-gray-600 rounded-full"></div>
             </div>
           </div>
@@ -174,8 +174,8 @@ const BlogSection = () => {
     >
       {/* Soft Background Accents */}
       <div className="absolute inset-0  from-primary/5 via-transparent to-transparent pointer-events-none" />
-      <div className="absolute top-20 left-10 w-[28rem] h-[28rem] bg-primary/20 rounded-full blur-[120px] -z-10" />
-      <div className="absolute bottom-20 right-10 w-[28rem] h-[28rem] bg-blue-600/20 rounded-full blur-[120px] -z-10" />
+      <div className="absolute top-20 left-10 w-[28rem] h-29 bg-primary/20 rounded-full blur-[120px] -z-10" />
+      <div className="absolute bottom-20 right-10 w-[28rem] h-29 bg-blue-600/20 rounded-full blur-[120px] -z-10" />
 
       <div className="container mx-auto max-w-7xl px-6">
         {/* Header */}
@@ -188,7 +188,7 @@ const BlogSection = () => {
             Latest From The Blog
           </h2>
 
-          <p className="mt-6 text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="mt-6 text-xl text-blue-700 dark:text-[#FFD230] max-w-3xl mx-auto">
             Fresh perspectives, deep dives, and cutting-edge ideas — curated for
             modern readers.
           </p>
@@ -205,7 +205,7 @@ const BlogSection = () => {
         <div className="text-center mt-20 ">
           <Link
             href="/blog"
-            className="group text-black rounded-full relative inline-flex items-center gap-3 px-12 py-5 text-lg font-medium  bg-gradient-to-r  bg-amber-300 p-1  shadow-xl shadow-primary/30 hover:shadow-primary/40 transition-all duration-500 hover:scale-105 overflow-hidden "
+            className="group text-black rounded-full relative inline-flex items-center gap-3 px-12 py-5 text-lg font-medium  bg-linear-to-r  bg-amber-300 p-1  shadow-xl shadow-primary/30 hover:shadow-primary/40 transition-all duration-500 hover:scale-105 overflow-hidden "
           >
             <span className="relative z-10 ">Read All Articles</span>
             <Icon
@@ -214,7 +214,7 @@ const BlogSection = () => {
             />
 
             {/* Hover Shine Effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-primary translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-700 opacity-40" />
+            <div className="absolute inset-0 bg-linear-to-r from-blue-600 to-primary -translate-x-full group-hover:translate-x-0 transition-transform duration-700 opacity-40" />
           </Link>
         </div>
       </div>

@@ -198,11 +198,11 @@ const Footer: FC = () => {
                 Services
               </Link>
             </li>
-            <li className="text-base text-white/50">
+            {/* <li className="text-base text-white/50">
               <Link href="/portfolio" className="hover:text-primary">
                 Portfolio
               </Link>
-            </li>
+            </li> */}
             <li className="text-base text-white/50">
               <Link href="/blog" className="hover:text-primary">
                 Blog

@@ -130,7 +130,7 @@ const Testimonial = () => {
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-midnight_text dark:text-white mb-3 sm:mb-4">
             Testimonials
           </h2>
-          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto px-4">
+          <p className="text-base sm:text-lg text-blue-700 dark:text-[#FFD230] max-w-2xl mx-auto px-4">
             See what our customers are saying about their experience with our
             services
           </p>

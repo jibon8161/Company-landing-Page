@@ -10,13 +10,13 @@ const BlogPage = () => {
   return (
     <>
       <HeroSub
-        title='Blog'
-        description='Discover a wealth of insightful materials meticulously crafted to provide you with a comprehensive understanding of the latest trends.'
+        title="Blog"
+        description="Made for humans, by a human."
         breadcrumbLinks={breadcrumbLinks}
       />
       <BlogList />
     </>
-  )
+  );
 }
 
 export default BlogPage
