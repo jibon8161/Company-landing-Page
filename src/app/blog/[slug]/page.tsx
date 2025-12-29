@@ -2,6 +2,7 @@
 import { Blog } from "@/types/blog";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { marked } from "marked";
 import {
   CalendarDays,
   User,
@@ -25,6 +26,7 @@ import BlogActionButtons from "@/components/Blog/BlogActionButtons";
 import BackToTopButton from "@/components/Blog/BackToTopButton";
 import NewsletterSubscribe from "@/components/Blog/NewsletterSubscribe";
 import BlogComments from "@/components/Blog/BlogComments";
+import BlogFormatter from "@/components/Blog/BlogFormatter";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -94,18 +96,18 @@ const BlogPage = async ({ params }: Props) => {
     const readingTime = Math.ceil(wordCount / 200);
 
     return (
-      <div className=" min-h-screen bg-linear-to-b from-gray-50/50 via-white to-blue-50/20 dark: dark:via-gray-900 dark:">
+      <div className="min-h-screen bg-gradient-to-b from-gray-50/50 via-white to-blue-50/20 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900">
         {/* Clean Navigation */}
         <BlogNavbar />
 
         {/* Back Button */}
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 ">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24">
           <Link
             href="/blog"
             className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-300 transition-colors mb-6 group"
           >
             <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform bg-[#FFD230]" />
-            <span className="  text-sm font-medium text-black dark:text-[#ffffff] rounded-4xl p-2 ">
+            <span className="text-sm font-medium text-black dark:text-[#ffffff] rounded-4xl p-2">
               Back to all articles
             </span>
           </Link>
@@ -124,12 +126,12 @@ const BlogPage = async ({ params }: Props) => {
             )}
 
             {/* Main Title */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-gray-900 dark:text-[#ffffff] mb-8 leading-tight tracking-tight ">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-gray-900 dark:text-white mb-8 leading-tight tracking-tight">
               {blog.title}
             </h1>
 
             {/* Minimal Meta Info */}
-            <div className="flex flex-wrap items-center gap-4 text-gray-600 dark:text-white mb-12 pb-8 border-b border-gray-200 dark:border-gray-800">
+            <div className="flex flex-wrap items-center gap-4 text-gray-600 dark:text-gray-300 mb-12 pb-8 border-b border-gray-200 dark:border-gray-800">
               <div className="flex items-center gap-2">
                 <User className="w-4 h-4" />
                 <span className="text-sm">
@@ -147,9 +149,9 @@ const BlogPage = async ({ params }: Props) => {
                 <span className="text-sm">{readingTime} min read</span>
               </div>
               <div className="flex items-center gap-2 ml-auto">
-                <Heart className="w-8 h-8 text-red-400" />
+                <Heart className="w-4 h-4 text-red-400" />
                 <span className="text-sm">{blog.likes}</span>
-                <Eye className="w-8 h-8 ml-4 text-blue-400" />
+                <Eye className="w-4 h-4 ml-4 text-blue-400" />
                 <span className="text-sm">{blog.views}</span>
               </div>
             </div>
@@ -157,22 +159,11 @@ const BlogPage = async ({ params }: Props) => {
         </div>
 
         {/* Main Layout */}
-        <div className=" mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-20">
           <div className="flex flex-col lg:flex-row gap-12">
             {/* Left Sidebar - Minimal & Collapsible */}
             <aside className="lg:w-64 lg:sticky lg:top-32 lg:self-start shrink-0">
               <div className="space-y-6">
-                {/* Table of Contents */}
-                {/* <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-5">
-                  <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider mb-4">
-                    Contents
-                  </h3>
-                  <BlogTableOfContents content={blog.content} />
-                </div> */}
-
-                {/* Floating Actions */}
-                {/* <BlogActionButtons /> */}
-
                 {/* Tags - Vertical Display */}
                 {blog.tags && blog.tags.length > 0 && (
                   <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-5">
@@ -205,7 +196,7 @@ const BlogPage = async ({ params }: Props) => {
               {/* Featured Image - Full Width */}
               {blog.coverImage && (
                 <div className="mb-10 -mx-4 sm:mx-0">
-                  <div className="relative aspect-21/9 w-full overflow-hidden">
+                  <div className="relative aspect-[21/9] w-full overflow-hidden rounded-xl">
                     <Image
                       src={blog.coverImage}
                       alt={blog.title}
@@ -214,7 +205,7 @@ const BlogPage = async ({ params }: Props) => {
                       priority
                       sizes="100vw"
                     />
-                    <div className="absolute inset-0 bg-linear-to-t from-black/10 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
                   </div>
                 </div>
               )}
@@ -226,39 +217,9 @@ const BlogPage = async ({ params }: Props) => {
                 </div>
               )}
 
-              {/* Article Content - Wide Layout */}
               <div className="max-w-none">
-                <div
-                  className="prose prose-lg max-w-none
-                    prose-headings:font-serif prose-headings:font-light
-                    prose-h1:text-5xl prose-h1:mt-12 prose-h1:mb-8 prose-h1:text-gray-900 dark:prose-h1:text-gray-100
-                    prose-h2:text-4xl prose-h2:mt-10 prose-h2:mb-6 prose-h2:text-gray-800 dark:prose-h2:text-gray-200
-                    prose-h3:text-3xl prose-h3:mt-8 prose-h3:mb-4 prose-h3:text-gray-700 dark:prose-h3:text-gray-300
-                    prose-h4:text-2xl prose-h4:mt-6 prose-h4:mb-4 prose-h4:text-gray-600 dark:prose-h4:text-gray-400
-                    prose-p:text-gray-700 dark:prose-p:text-gray-400 prose-p:leading-relaxed prose-p:text-xl prose-p:mb-6
-                    prose-a:text-blue-600 dark:prose-a:text-blue-400 prose-a:no-underline hover:prose-a:underline
-                    prose-strong:text-gray-900 dark:prose-strong:text-gray-200 prose-strong:font-normal
-                    prose-ul:text-gray-700 dark:prose-ul:text-gray-400 prose-ul:text-xl prose-ul:my-6
-                    prose-ol:text-gray-700 dark:prose-ol:text-gray-400 prose-ol:text-xl prose-ol:my-6
-                    prose-li:my-2
-                    prose-blockquote:text-2xl prose-blockquote:font-light prose-blockquote:italic
-                    prose-blockquote:text-gray-600 dark:prose-blockquote:text-gray-400
-                    prose-blockquote:border-l-4 prose-blockquote:border-blue-300 dark:prose-blockquote:border-blue-700
-                    prose-blockquote:pl-8 prose-blockquote:my-10
-                    prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:px-2 prose-code:py-1 prose-code:rounded
-                    prose-code:text-lg prose-code:font-mono
-                    prose-pre:bg-gray-900 dark:prose-pre:bg-gray-950 prose-pre:text-gray-100
-                    prose-pre:p-8 prose-pre:rounded-xl prose-pre:my-10 prose-pre:overflow-x-auto
-                    prose-pre:border prose-pre:border-gray-800
-                    prose-img:rounded-xl prose-img:shadow-lg prose-img:my-10
-                    prose-img:mx-auto prose-img:w-full prose-img:h-auto
-                    prose-table:w-full prose-table:my-10
-                    prose-th:bg-gray-100 dark:prose-th:bg-gray-800 prose-th:font-normal prose-th:p-4
-                    prose-td:p-4 prose-td:border-t prose-td:border-gray-200 dark:prose-td:border-gray-800
-                    prose-figcaption:text-center prose-figcaption:text-gray-500 dark:prose-figcaption:text-gray-500
-                    prose-figcaption:text-sm prose-figcaption:mt-2"
-                >
-                  <div dangerouslySetInnerHTML={{ __html: blog.content }} />
+                <div className="font-sans">
+                  <BlogFormatter content={blog.content} />
                 </div>
               </div>
 
@@ -318,7 +279,5 @@ const BlogPage = async ({ params }: Props) => {
     return notFound();
   }
 };
-
-
 
 export default BlogPage;
