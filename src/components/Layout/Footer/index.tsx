@@ -43,8 +43,8 @@ const Footer: FC = () => {
                 <Image
                   src={getImgPath("/images/logo/logo-white.svg")}
                   alt="logo"
-                  width={60}
-                  height={10}
+                  width={200}
+                  height={50}
                   // style={{ width: "auto", height: "auto" }}
                   quality={100}
                   unoptimized

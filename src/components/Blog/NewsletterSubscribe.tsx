@@ -52,7 +52,6 @@ export default function NewsletterSubscribe() {
           <p className="text-green-700 dark:text-green-400 font-medium mb-1">
             Welcome aboard! 🎉
           </p>
-         
         </div>
       ) : (
         <>
@@ -93,7 +92,7 @@ export default function NewsletterSubscribe() {
 
           {/* Privacy Note */}
           <p className="text-xs text-gray-400 dark:text-gray-500 text-center mt-4 pt-3 border-t border-gray-200/30 dark:border-gray-800/30">
-           Bees Zone
+            Bess Zone
           </p>
         </>
       )}

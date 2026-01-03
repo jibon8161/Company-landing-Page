@@ -30,8 +30,6 @@ function convertTimezone(time, fromTimezone, toTimezone, date) {
   }
 }
 
-
-
 export async function POST(request) {
   console.log("✅ CONSULTATION API HIT on Vercel"); // ← ADD THIS LINE
   try {
@@ -134,13 +132,13 @@ export async function POST(request) {
       },
       body: JSON.stringify({
         sender: {
-          name: "BeesZone Website",
+          name: "BessZone Website",
           email: "motivationlife25@gmail.com",
         },
         to: [
           {
             email: "jibon2230@gmail.com",
-            name: "BeesZone Team",
+            name: "BessZone Team",
           },
         ],
         subject: `New Consultation Request from ${userData.firstName} ${userData.lastName}`,
@@ -189,7 +187,7 @@ export async function POST(request) {
       },
       body: JSON.stringify({
         sender: {
-          name: "BeesZone Team",
+          name: "BessZone Team",
           email: "motivationlife25@gmail.com",
         },
         to: [

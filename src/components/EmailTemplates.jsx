@@ -17,7 +17,7 @@ export const UserConfirmationEmail = ({
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Thank You for Contacting BeesZone</title>
+  <title>Thank You for Contacting BessZone</title>
   <style>
     /* Reset and Base Styles */
     * {
@@ -349,8 +349,8 @@ export const UserConfirmationEmail = ({
     <!-- Header -->
     <div class="header">
       <div class="logo-container">
-        <img src="${LOGO_URL}" alt="BeesZone Logo" class="logo">
-        <h1 style="color: white; font-size: 42px; font-weight: 800; margin: 0 0 12px; position: relative; z-index: 2;">BeesZone</h1>
+        <img src="${LOGO_URL}" alt="BessZone Logo" class="logo">
+        <h1 style="color: white; font-size: 42px; font-weight: 800; margin: 0 0 12px; position: relative; z-index: 2;">BessZone</h1>
         <p style="color: rgba(255, 255, 255, 0.95); margin: 0; font-size: 18px; font-weight: 400; position: relative; z-index: 2;">The Silent Partner in Your Success</p>
       </div>
     </div>
@@ -360,7 +360,7 @@ export const UserConfirmationEmail = ({
       <h2 class="welcome-text">Hello, ${firstName}!</h2>
       
       <div style="color: #6b7280; line-height: 1.7; margin-bottom: 30px; font-size: 16px;">
-        <p style="margin-bottom: 18px; color: #4b5563;">Thank you for reaching out to BeesZone. We have received your message and our team will get back to you within 24 hours.</p>
+        <p style="margin-bottom: 18px; color: #4b5563;">Thank you for reaching out to BessZone. We have received your message and our team will get back to you within 24 hours.</p>
         <p style="margin-bottom: 18px; color: #4b5563;">We appreciate your interest in our services and look forward to connecting with you.</p>
       </div>
 
@@ -396,7 +396,7 @@ export const UserConfirmationEmail = ({
 
       <!-- CTA Button -->
       <div style="text-align: center;">
-        <a href="https://beeszone.netlify.app/" class="cta-button">
+        <a href="https://Besszone.netlify.app/" class="cta-button">
           Visit Our Website →
         </a>
       </div>
@@ -417,7 +417,7 @@ export const UserConfirmationEmail = ({
       </div>
       
       <div style="color: #9ca3af; font-size: 14px; margin-top: 25px;">
-        &copy; 2024 BeesZone. All rights reserved. | The Silent Partner in Your Success
+        &copy; 2024 BessZone. All rights reserved. | The Silent Partner in Your Success
       </div>
     </div>
   </div>
@@ -441,7 +441,7 @@ export const AdminNotificationEmail = ({
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>New Contact Form Submission - BeesZone</title>
+  <title>New Contact Form Submission - BessZone</title>
   <style>
     /* Reset and Base Styles */
     * {
@@ -680,10 +680,10 @@ export const AdminNotificationEmail = ({
     <div class="header">
       <div style="display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 2;">
         <div style="display: flex; align-items: center; gap: 20px;">
-          <img src="${LOGO_URL}" alt="BeesZone Logo" style="height: 50px; background: white; padding: 8px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
+          <img src="${LOGO_URL}" alt="BessZone Logo" style="height: 50px; background: white; padding: 8px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);">
           <div>
             <h1 style="color: white; font-size: 28px; font-weight: 800; margin: 0;">New Contact Submission</h1>
-            <p style="color: rgba(255, 255, 255, 0.9); font-size: 16px; margin: 4px 0 0; font-weight: 500;">BeesZone Website</p>
+            <p style="color: rgba(255, 255, 255, 0.9); font-size: 16px; margin: 4px 0 0; font-weight: 500;">BessZone Website</p>
           </div>
         </div>
         <div style="color: white; font-size: 14px; background: rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 25px; font-weight: 600; backdrop-filter: blur(10px);">
@@ -750,7 +750,7 @@ export const AdminNotificationEmail = ({
         <a href="mailto:${email}" class="action-button primary">
           📧 Reply via Email
         </a>
-        <a href="https://beeszone.netlify.app/" class="action-button secondary">
+        <a href="https://Besszone.netlify.app/" class="action-button secondary">
           🌐 View Website
         </a>
       </div>

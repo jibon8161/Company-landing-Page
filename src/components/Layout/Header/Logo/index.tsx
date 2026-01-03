@@ -9,7 +9,7 @@ const Logo: React.FC = () => {
       <Image
         src={getImgPath("/images/logo/logo.svg")}
         alt="logo"
-        width={100}
+        width={200}
         height={50}
         quality={100}
         className="dark:hidden absolute p-2"
@@ -19,7 +19,7 @@ const Logo: React.FC = () => {
       <Image
         src={getImgPath("/images/logo/logo-white.svg")}
         alt="logo"
-        width={100}
+        width={200}
         height={50}
         quality={100}
         className="hidden dark:block absolute p-2"

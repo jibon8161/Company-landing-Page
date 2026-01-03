@@ -1,15 +1,15 @@
-import React from 'react'
+import React from "react";
 import { Metadata } from "next";
-import Hero from '@/components/Home/Hero';
-import Counter from '@/components/Home/Counter'
-import Progresswork from '@/components/Home/WorkProgress';
-import Services from '@/components/Home/Services';
-import Portfolio from '@/components/SharedComponent/portfollio'
-import Testimonial from '@/components/SharedComponent/Testimonial'
-import Blog from '@/components/SharedComponent/Blog'
-import Contactform from '@/components/Home/Contact';
+import Hero from "@/components/Home/Hero";
+import Counter from "@/components/Home/Counter";
+import Progresswork from "@/components/Home/WorkProgress";
+import Services from "@/components/Home/Services";
+import Portfolio from "@/components/SharedComponent/portfollio";
+import Testimonial from "@/components/SharedComponent/Testimonial";
+import Blog from "@/components/SharedComponent/Blog";
+import Contactform from "@/components/Home/Contact";
 export const metadata: Metadata = {
-  title: "Bees Zone",
+  title: "BessZone",
 };
 
 export default function Home() {
@@ -24,5 +24,5 @@ export default function Home() {
       <Blog />
       <Contactform />
     </main>
-  )
+  );
 }

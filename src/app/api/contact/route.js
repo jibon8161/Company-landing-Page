@@ -74,13 +74,13 @@ export async function POST(request) {
         },
         body: JSON.stringify({
           sender: {
-            name: "BeesZone Website",
+            name: "BessZone Website",
             email: "motivationlife25@gmail.com",
           },
           to: [
             {
               email: "jibon2230@gmail.com",
-              name: "BeesZone Team",
+              name: "BessZone Team",
             },
           ],
           subject: `New Contact Form Submission from ${body.firstName} ${body.lastName}`,
@@ -110,7 +110,7 @@ export async function POST(request) {
         },
         body: JSON.stringify({
           sender: {
-            name: "BeesZone Team",
+            name: "BessZone Team",
             email: "motivationlife25@gmail.com",
           },
           to: [
@@ -119,13 +119,13 @@ export async function POST(request) {
               name: `${body.firstName} ${body.lastName}`,
             },
           ],
-          subject: "Thank you for contacting BeesZone!",
+          subject: "Thank you for contacting BessZone!",
           htmlContent: `
-            <h2>Thank You for Contacting BeesZone!</h2>
+            <h2>Thank You for Contacting BessZone!</h2>
             <p>Dear ${body.firstName},</p>
             <p>We have received your message and will get back to you within 24 hours.</p>
             <p><strong>Your Message:</strong> ${body.message}</p>
-            <p>Best regards,<br/>BeesZone Team</p>
+            <p>Best regards,<br/>BessZone Team</p>
           `,
         }),
       });
