@@ -105,8 +105,8 @@ const Hero = () => {
         {/* Hero Image Section */}
         <div className="md:col-span-6 col-span-12 relative">
           {/* Floating Gradient Overlays */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-blue-600/20 rounded-3xl blur-2xl scale-105 animate-[float_6s_ease-in-out_infinite]"></div>
-          <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-primary/20 via-blue-500/10 to-purple-500/20 animate-[float_6s_ease-in-out_infinite]" style={{ animationDelay: "1s" }}></div>
+          <div className="absolute inset-0 bg-linear-to-br from-primary/20 to-blue-600/20 rounded-3xl blur-2xl scale-105 animate-[float_6s_ease-in-out_infinite]"></div>
+          <div className="absolute inset-0 rounded-3xl bg-linear-to-r from-primary/20 via-blue-500/10 to-purple-500/20 animate-[float_6s_ease-in-out_infinite]" style={{ animationDelay: "1s" }}></div>
 
           {/* Small Accent Circles */}
           <div className="absolute -top-4 -right-4 w-6 h-6 bg-primary/30 rounded-full animate-[float_6s_ease-in-out_infinite]"></div>
@@ -122,15 +122,15 @@ const Hero = () => {
               height={150}
               quality={100}
               style={{ width: "100%", height: "auto" }}
-              className="relative z-10 drop-shadow-2xl"
+              className="relative z-10 drop-shadow-2xl mt-8"
             />
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+            <div className="absolute inset-0 rounded-3xl bg-linear-to-r from-transparent via-white/20 to-transparent"></div>
           </div>
         </div>
       </div>
 
       {/* Bottom Gradient Line */}
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
+      <div className="absolute bottom-0 left-0 w-full h-1 bg-linear-to-r from-transparent via-primary to-transparent opacity-50"></div>
     </section>
   );
 };
