@@ -7,7 +7,8 @@ import ScrollToTop from "@/components/ScrollToTop";
 import Aoscompo from "@/utils/aos";
 import NextTopLoader from "nextjs-toploader";
 import VantaClouds from "@/components/VantaTopology";
-import KillSwitchClientCheck from "@/components/KillSwitchClientCheck"; // Add this import
+import KillSwitchClientCheck from "@/components/KillSwitchClientCheck";
+import ChatWidget from "@/components/ChatWidget"; // Add this import
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,7 +29,7 @@ export default function RootLayout({
           {/* Vanta Clouds Background */}
           <VantaClouds />
 
-          {/* Kill Switch Client Check - Add this line */}
+          {/* Kill Switch Client Check */}
           <KillSwitchClientCheck />
 
           <Aoscompo>
@@ -36,6 +37,9 @@ export default function RootLayout({
               <Header />
               {children}
               <Footer />
+
+              {/* Add Chat Widget Here - It will float above everything */}
+              <ChatWidget />
             </div>
           </Aoscompo>
           <ScrollToTop />
