@@ -96,7 +96,7 @@ const BlogPage = async ({ params }: Props) => {
     const readingTime = Math.ceil(wordCount / 200);
 
     return (
-      <div className="min-h-screen bg-gradient-to-b from-gray-50/50 via-white to-blue-50/20 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900">
+      <div className="min-h-screen bg-linear-to-b from-gray-50/50 via-white to-blue-50/20 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900">
         {/* Clean Navigation */}
         <BlogNavbar />
 
